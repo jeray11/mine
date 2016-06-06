@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Mapping\Forums\ForumGroupMap.cs" />
     <Compile Include="Mapping\Forums\ForumMap.cs" />
+    <Compile Include="MineContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
