@@ -1,4 +1,5 @@
 ﻿using mine.core.Domain;
+using MySql.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,8 +11,10 @@ using System.Threading.Tasks;
 
 namespace mine.data
 {
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class MineContext:DbContext
     {
+        public MineContext() : base("MineContext") { }
         public MineContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {
@@ -43,5 +46,6 @@ namespace mine.data
         {
             return base.Set<TEntity>();
         }
+
     }
 }

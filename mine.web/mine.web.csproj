@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +40,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data">
       <HintPath>..\packages\MySql.Data.6.9.8\lib\net45\MySql.Data.dll</HintPath>
@@ -240,6 +244,10 @@
     <ProjectReference Include="..\mine.core\mine.core.csproj">
       <Project>{bf6f845d-c1ee-4d47-bf70-a41bee812c52}</Project>
       <Name>mine.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mine.data\mine.data.csproj">
+      <Project>{a886a61e-01c7-411e-8f1c-9f219c279bc3}</Project>
+      <Name>mine.data</Name>
     </ProjectReference>
     <ProjectReference Include="..\mine.services\mine.services.csproj">
       <Project>{3e6761d1-69fe-43a6-958f-6f9f2b96352b}</Project>
