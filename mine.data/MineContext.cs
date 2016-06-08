@@ -1,4 +1,5 @@
 ﻿using mine.core.Domain;
+using mine.core.Domain.Forums;
 using MySql.Data.Entity;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace mine.data
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class MineContext:DbContext
     {
-        public MineContext() : base("MineContext") { }
+        public MineContext() : base("Data Source=119.29.105.212;port=3306;Initial Catalog=Mine;user id=root;password=jeray11;") { }
         public MineContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {
@@ -46,6 +47,7 @@ namespace mine.data
         {
             return base.Set<TEntity>();
         }
+
 
     }
 }
