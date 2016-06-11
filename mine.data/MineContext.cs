@@ -12,10 +12,9 @@ using System.Threading.Tasks;
 
 namespace mine.data
 {
-    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class MineContext:DbContext
     {
-        public MineContext() : base("Data Source=119.29.105.212;port=3306;Initial Catalog=Mine;user id=root;password=jeray11;") { }
+        public MineContext() : base("name=MineContext") { }
         public MineContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {

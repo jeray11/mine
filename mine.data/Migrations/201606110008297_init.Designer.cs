@@ -13,7 +13,7 @@ namespace mine.data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201606080838119_init"; }
+            get { return "201606110008297_init"; }
         }
         
         string IMigrationMetadata.Source
