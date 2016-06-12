@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mine.core.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace mine.core.Infrastructure
         /// Initialize components and plugins in the nop environment.
         /// </summary>
         /// <param name="config">Config</param>
-        void Initialize(NopConfig config);
+        void Initialize(MineConfig config);
 
         /// <summary>
         /// Resolve dependency

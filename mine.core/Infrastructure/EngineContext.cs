@@ -28,7 +28,7 @@ namespace mine.core.Infrastructure
                 return Activator.CreateInstance(engineType) as IEngine;
             }
 
-            return new NopEngine();
+            return new MineEngine();
         }
         /// <summary>
         /// Initializes a static instance of the Nop factory.
