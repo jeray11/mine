@@ -19,6 +19,7 @@ namespace mine.web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             //initialize engine context
+
             EngineContext.Initialize(false);
         }
     }
