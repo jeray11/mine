@@ -22,5 +22,10 @@ namespace mine.web
 
             EngineContext.Initialize(false);
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception ex = Server.GetLastError();
+        }
     }
 }

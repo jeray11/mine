@@ -96,6 +96,7 @@ namespace mine.web.Controllers
         // GET: /Boards/
         public ActionResult Index()
         {
+            return Content("123");
             if (!_forumSettings.ForumsEnabled)
             {
                 return RedirectToRoute("HomePage");

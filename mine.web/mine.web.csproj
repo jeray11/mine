@@ -253,6 +253,10 @@
       <Project>{3e6761d1-69fe-43a6-958f-6f9f2b96352b}</Project>
       <Name>mine.services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\mine.web.framework\mine.web.framework.csproj">
+      <Project>{c57a4b3e-f07a-4ad8-8b40-5f3e9ee182e7}</Project>
+      <Name>mine.web.framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
