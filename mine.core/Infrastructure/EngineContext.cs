@@ -45,5 +45,20 @@ namespace mine.core.Infrastructure
             }
             return Singleton<IEngine>.Instance;
         }
+
+        /// <summary>
+        /// Gets the singleton Nop engine used to access Nop services.
+        /// </summary>
+        public static IEngine Current
+        {
+            get
+            {
+                if (Singleton<IEngine>.Instance == null)
+                {
+                    Initialize(false);
+                }
+                return Singleton<IEngine>.Instance;
+            }
+        }
     }
 }

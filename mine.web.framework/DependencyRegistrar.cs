@@ -60,6 +60,7 @@ namespace mine.web.framework
             //user agent helper
             builder.RegisterType<UserAgentHelper>().As<IUserAgentHelper>().InstancePerLifetimeScope();//HTTP context and other related stuff
             
+
             //controllers
             builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
 
@@ -76,6 +77,7 @@ namespace mine.web.framework
             builder.RegisterType<CountryService>().As<ICountryService>().InstancePerLifetimeScope();
             builder.RegisterType<SettingService>().As<ISettingService>().InstancePerLifetimeScope();
             builder.RegisterSource(new SettingsSource());
+            builder.RegisterType<DateTimeHelper>().As<IDateTimeHelper>().InstancePerLifetimeScope();
         }
     }
 

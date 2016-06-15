@@ -171,6 +171,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\RouteProvider.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Boards\BoardsIndexModel.cs" />
     <Compile Include="Models\Boards\ForumGroupModel.cs" />
@@ -276,7 +277,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61309</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61309/</IISUrl>
+          <IISUrl>http://localhost:61310/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

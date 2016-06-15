@@ -1,4 +1,6 @@
-﻿using System;
+﻿using mine.core.Infrastructure;
+using mine.web.framework.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,8 +19,13 @@ namespace mine.web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "BoardsController", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Boards", action = "Index", id = UrlParameter.Optional },
+                namespaces:new[] { "mine.web.Controllers" }
             );
+
+            //register custom routes (plugins, etc)
+            var routePublisher = EngineContext.Current.Resolve<IRoutePublisher>();
+            routePublisher.RegisterRoutes(routes);
         }
     }
 }
