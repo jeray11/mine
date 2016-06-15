@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ISettings.cs" />
     <Compile Include="Configuration\MineConfig.cs" />
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\Customers\CustomerSettings.cs" />
@@ -64,6 +65,8 @@
     <Compile Include="Domain\Forums\ForumGroup.cs" />
     <Compile Include="Domain\Forums\ForumSettings.cs" />
     <Compile Include="Domain\Media\MediaSettings.cs" />
+    <Compile Include="Domain\Stores\Store.cs" />
+    <Compile Include="Fakes\FakeHttpContext.cs" />
     <Compile Include="Infrastructure\AppDomainTypeFinder.cs" />
     <Compile Include="Infrastructure\ContainerManager.cs" />
     <Compile Include="Infrastructure\EngineContext.cs" />
@@ -78,6 +81,7 @@
     <Compile Include="IWebHelper.cs" />
     <Compile Include="IWorkContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

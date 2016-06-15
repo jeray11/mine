@@ -1,14 +1,13 @@
-﻿using mine.core.Domain.Stores;
+﻿using mine.core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mine.core
+namespace mine.web.framework
 {
-   public interface IStoreContext
+    public class WebStoreContext : IStoreContext
     {
-       Store CurrentStore { get; }
     }
 }
