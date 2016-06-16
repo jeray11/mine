@@ -12,6 +12,7 @@ using mine.services.Forums;
 using mine.services.Helpers;
 using mine.services.Localization;
 using mine.services.Media;
+using mine.web.framework.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,6 +79,8 @@ namespace mine.web.framework
             builder.RegisterType<SettingService>().As<ISettingService>().InstancePerLifetimeScope();
             builder.RegisterSource(new SettingsSource());
             builder.RegisterType<DateTimeHelper>().As<IDateTimeHelper>().InstancePerLifetimeScope();
+
+            builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
         }
     }
 

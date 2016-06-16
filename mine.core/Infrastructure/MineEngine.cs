@@ -89,7 +89,7 @@ namespace mine.core.Infrastructure
 
         public T Resolve<T>() where T : class
         {
-            throw new NotImplementedException();
+            return ContainerManager.Resolve<T>();
         }
 
         public T[] ResolveAll<T>()
