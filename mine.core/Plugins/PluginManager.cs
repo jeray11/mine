@@ -12,14 +12,15 @@ namespace mine.core.Plugins
 {
     public class PluginManager
     {
+        private static readonly ReaderWriterLockSlim Locker = new ReaderWriterLockSlim();
         /// <summary>
-     /// Returns a collection of all referenced plugin assemblies that have been shadow copied
-     /// </summary>
+        /// Returns a collection of all referenced plugin assemblies that have been shadow copied
+        /// </summary>
         public static IEnumerable<PluginDescriptor> ReferencedPlugins { get; set; }
 
         public static void Initialize() 
         {
-            var id = Thread.CurrentThread.ManagedThreadId;
+            
         }
     }
 }

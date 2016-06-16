@@ -14,13 +14,15 @@ namespace mine.web
     {
         protected void Application_Start()
         {
+            //initialize engine context
+            EngineContext.Initialize(false);
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //initialize engine context
-            EngineContext.Initialize(false);
+           
             var id=Thread.CurrentThread.ManagedThreadId;
         }
 

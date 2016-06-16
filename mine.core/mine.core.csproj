@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComponentModel\WriteLockDisposable.cs" />
     <Compile Include="Configuration\ISettings.cs" />
     <Compile Include="Configuration\MineConfig.cs" />
     <Compile Include="Domain\BaseEntity.cs" />

@@ -25,7 +25,7 @@ namespace mine.web
 
             //register custom routes (plugins, etc)
             var routePublisher = EngineContext.Current.Resolve<IRoutePublisher>();
-            //routePublisher.RegisterRoutes(routes);
+            routePublisher.RegisterRoutes(routes);
         }
     }
 }
