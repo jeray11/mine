@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonHelper.cs" />
     <Compile Include="ComponentModel\WriteLockDisposable.cs" />
     <Compile Include="Configuration\ISettings.cs" />
     <Compile Include="Configuration\MineConfig.cs" />
@@ -81,7 +82,10 @@
     <Compile Include="IStoreContext.cs" />
     <Compile Include="IWebHelper.cs" />
     <Compile Include="IWorkContext.cs" />
+    <Compile Include="MineVersion.cs" />
+    <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\PluginDescriptor.cs" />
+    <Compile Include="Plugins\PluginFileParser.cs" />
     <Compile Include="Plugins\PluginManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebHelper.cs" />

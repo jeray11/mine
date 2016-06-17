@@ -28,14 +28,12 @@ namespace mine.web
 
         protected void Application_BeginRequest(Object sender, EventArgs e)
         {
-            var id = Thread.CurrentThread.ManagedThreadId;
+            
         }
 
         protected void Application_Error(object sender, EventArgs e)
         {
 
-            var id = Thread.CurrentThread.ManagedThreadId;
-            Exception ex = Server.GetLastError();
         }
     }
 }
