@@ -20,15 +20,17 @@ namespace mine.web
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-           
-            var id=Thread.CurrentThread.ManagedThreadId;
+            BundleConfig.RegisterBundles(BundleTable.Bundles); 
         }
 
         protected void Application_BeginRequest(Object sender, EventArgs e)
         {
-            
+
+        }
+
+        public class testclass<T>
+        {
+
         }
 
         protected void Application_Error(object sender, EventArgs e)

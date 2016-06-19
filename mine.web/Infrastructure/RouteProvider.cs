@@ -12,10 +12,10 @@ namespace mine.web.Infrastructure
 
         public void RegisterRoutes(System.Web.Routing.RouteCollection routes)
         {
-            routes.MapRoute("HomePage",
-                            "",
-                            new { controller = "Home", action = "Index" },
-                            new[] { "mine.web.Controllers" });
+            routes.MapRoute(name:"HomePage",
+                            url: "homepage/",
+                           defaults: new { controller = "Home", action = "Index" },
+                           namespaces: new[] { "mine.web.Controllers" });
         }
 
         public int Priority

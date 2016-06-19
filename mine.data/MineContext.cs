@@ -12,8 +12,34 @@ using System.Threading.Tasks;
 
 namespace mine.data
 {
-    public class MineContext:DbContext
+    public class MineContext:DbContext,IDbContext
     {
+        public bool ProxyCreationEnabled
+        {
+            get
+            {
+                return this.Configuration.ProxyCreationEnabled;
+            }
+
+            set
+            {
+                this.Configuration.ProxyCreationEnabled = value;
+            }
+        }
+
+        public bool AutoDetectChangesEnabled
+        {
+            get
+            {
+                return this.Configuration.AutoDetectChangesEnabled;
+            }
+
+            set
+            {
+                this.Configuration.AutoDetectChangesEnabled = value;
+            }
+        }
+
         public MineContext() : base("name=MineContext") { }
         public MineContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
@@ -47,6 +73,24 @@ namespace mine.data
             return base.Set<TEntity>();
         }
 
+        public IList<TEntity> ExecuteStoredProcedureList<TEntity>(string commandText, params object[] parameters) where TEntity : BaseEntity, new()
+        {
+            throw new NotImplementedException();
+        }
 
+        public IEnumerable<TElement> SqlQuery<TElement>(string sql, params object[] parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int ExecuteSqlCommand(string sql, bool doNotEnsureTransaction = false, int? timeout = default(int?), params object[] parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Detach(object entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

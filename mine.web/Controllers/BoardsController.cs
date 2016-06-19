@@ -98,7 +98,6 @@ namespace mine.web.Controllers
         // GET: /Boards/
         public ActionResult Index()
         {
-            var id = Thread.CurrentThread.ManagedThreadId;
             if (!_forumSettings.ForumsEnabled)
             {
                 return RedirectToRoute("HomePage");

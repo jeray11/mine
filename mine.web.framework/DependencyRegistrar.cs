@@ -3,6 +3,7 @@ using Autofac.Builder;
 using Autofac.Core;
 using Autofac.Integration.Mvc;
 using mine.core;
+using mine.core.Caching;
 using mine.core.Configuration;
 using mine.core.Fakes;
 using mine.core.Infrastructure;
@@ -12,6 +13,7 @@ using mine.services.Forums;
 using mine.services.Helpers;
 using mine.services.Localization;
 using mine.services.Media;
+using mine.services.Stores;
 using mine.web.framework.Mvc;
 using System;
 using System.Collections.Generic;
@@ -70,15 +72,22 @@ namespace mine.web.framework
             //store context
             builder.RegisterType<WebStoreContext>().As<IStoreContext>().InstancePerLifetimeScope();
 
+            //cache manager
+            builder.RegisterType<MemoryCacheManager>().As<ICacheManager>().Named<ICacheManager>("mine_cache_static").SingleInstance();
+            //builder.RegisterType<PerRequestCacheManager>().As<ICacheManager>().Named<ICacheManager>("nop_cache_per_request").InstancePerLifetimeScope();
+
             //service
             builder.RegisterType<ForumService>().As<IForumService>().InstancePerLifetimeScope();
             //pass MemoryCacheManager as cacheManager (cache locales between requests)
             builder.RegisterType<LocalizationService>().As<ILocalizationService>().InstancePerLifetimeScope();
             builder.RegisterType<PictureService>().As<IPictureService>().InstancePerLifetimeScope();
             builder.RegisterType<CountryService>().As<ICountryService>().InstancePerLifetimeScope();
-            builder.RegisterType<SettingService>().As<ISettingService>().InstancePerLifetimeScope();
+            builder.RegisterType<SettingService>().As<ISettingService>()
+                 .WithParameter(ResolvedParameter.ForNamed<ICacheManager>("mine_cache_static"))
+                 .InstancePerLifetimeScope();
             builder.RegisterSource(new SettingsSource());
             builder.RegisterType<DateTimeHelper>().As<IDateTimeHelper>().InstancePerLifetimeScope();
+            builder.RegisterType<StoreService>().As<IStoreService>().InstancePerLifetimeScope();
 
             builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
         }

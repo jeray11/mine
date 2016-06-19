@@ -8,5 +8,11 @@ namespace mine.core
 {
     public interface IWebHelper
     {
+        /// <summary>
+        /// Gets server variable by name
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <returns>Server variable</returns>
+        string ServerVariables(string name);
     }
 }

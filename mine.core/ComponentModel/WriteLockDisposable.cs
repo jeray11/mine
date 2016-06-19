@@ -19,7 +19,7 @@ namespace mine.core.ComponentModel
 
         public void Dispose()
         {
-            _rwLock.EnterWriteLock();
+            _rwLock.ExitWriteLock();
         }
     }
 }

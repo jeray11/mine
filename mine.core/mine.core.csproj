@@ -46,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -57,10 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caching\ICacheManager.cs" />
+    <Compile Include="Caching\MemoryCacheManager.cs" />
     <Compile Include="CommonHelper.cs" />
     <Compile Include="ComponentModel\WriteLockDisposable.cs" />
     <Compile Include="Configuration\ISettings.cs" />
     <Compile Include="Configuration\MineConfig.cs" />
+    <Compile Include="Configuration\Setting.cs" />
+    <Compile Include="Data\IRepository.cs" />
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\Customers\CustomerSettings.cs" />
     <Compile Include="Domain\Forums\Forum.cs" />
@@ -68,6 +73,7 @@
     <Compile Include="Domain\Forums\ForumSettings.cs" />
     <Compile Include="Domain\Media\MediaSettings.cs" />
     <Compile Include="Domain\Stores\Store.cs" />
+    <Compile Include="Domain\Stores\StoreExtensions.cs" />
     <Compile Include="Fakes\FakeHttpContext.cs" />
     <Compile Include="Infrastructure\AppDomainTypeFinder.cs" />
     <Compile Include="Infrastructure\ContainerManager.cs" />
