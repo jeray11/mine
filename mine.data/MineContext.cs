@@ -75,17 +75,17 @@ namespace mine.data
 
         public IList<TEntity> ExecuteStoredProcedureList<TEntity>(string commandText, params object[] parameters) where TEntity : BaseEntity, new()
         {
-            throw new NotImplementedException();
+            return this.Database.SqlQuery<TEntity>(commandText, parameters).ToList();
         }
 
         public IEnumerable<TElement> SqlQuery<TElement>(string sql, params object[] parameters)
         {
-            throw new NotImplementedException();
+            return this.Database.SqlQuery<TElement>(sql, parameters);
         }
 
         public int ExecuteSqlCommand(string sql, bool doNotEnsureTransaction = false, int? timeout = default(int?), params object[] parameters)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Detach(object entity)
