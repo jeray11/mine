@@ -88,6 +88,10 @@
       <Project>{bf6f845d-c1ee-4d47-bf70-a41bee812c52}</Project>
       <Name>mine.core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\mine.data\mine.data.csproj">
+      <Project>{a886a61e-01c7-411e-8f1c-9f219c279bc3}</Project>
+      <Name>mine.data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\mine.services\mine.services.csproj">
       <Project>{3e6761d1-69fe-43a6-958f-6f9f2b96352b}</Project>
       <Name>mine.services</Name>

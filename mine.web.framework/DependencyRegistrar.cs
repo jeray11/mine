@@ -5,8 +5,10 @@ using Autofac.Integration.Mvc;
 using mine.core;
 using mine.core.Caching;
 using mine.core.Configuration;
+using mine.core.Data;
 using mine.core.Fakes;
 using mine.core.Infrastructure;
+using mine.data;
 using mine.services.Configuration;
 using mine.services.Dictionary;
 using mine.services.Forums;
@@ -90,6 +92,8 @@ namespace mine.web.framework
             builder.RegisterType<StoreService>().As<IStoreService>().InstancePerLifetimeScope();
 
             builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
+            //data layer
+            builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
         }
     }
 
