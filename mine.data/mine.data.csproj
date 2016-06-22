@@ -36,9 +36,6 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\packages\MySql.Data.6.9.8\lib\net45\MySql.Data.dll</HintPath>
     </Reference>
@@ -73,6 +70,10 @@
     <Compile Include="Migrations\201606211449496_add_table_store.Designer.cs">
       <DependentUpon>201606211449496_add_table_store.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606221407506_11111.cs" />
+    <Compile Include="Migrations\201606221407506_11111.Designer.cs">
+      <DependentUpon>201606221407506_11111.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MineContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606211449496_add_table_store.resx">
       <DependentUpon>201606211449496_add_table_store.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606221407506_11111.resx">
+      <DependentUpon>201606221407506_11111.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

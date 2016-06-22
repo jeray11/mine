@@ -94,6 +94,7 @@ namespace mine.web.framework
             builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
             //data layer
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+            builder.Register<IDbContext>(c=>new MineContext()).InstancePerLifetimeScope();
         }
     }
 
