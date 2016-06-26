@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mine.services.Localization
+namespace mine.core.Domain.Customers
 {
-    public interface ILocalizationService
+    public class Customer:BaseEntity
     {
-        string GetResource(string format);
     }
 }

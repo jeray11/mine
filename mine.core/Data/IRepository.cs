@@ -15,5 +15,11 @@ namespace mine.core.Data
         IQueryable<T> TableNoTracking { get; }
 
         IQueryable<T> Table { get; }
+
+        /// <summary>
+        /// Insert entity
+        /// </summary>
+        /// <param name="entity">Entity</param>
+        void Insert(T entity);
     }
 }

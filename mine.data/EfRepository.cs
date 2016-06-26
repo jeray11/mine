@@ -50,5 +50,17 @@ namespace mine.data
                 return _entities;
             }
         }
+
+        public void Insert(T entity)
+        {
+            try
+            {
+                if (entity == null)
+                    throw new ArgumentNullException("entity");
+                this.Entities.Add(entity);
+                this._context.SaveChanges();
+            }
+            catch(DbEntityValidationException dbEx)
+        }
     }
 }

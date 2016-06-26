@@ -108,7 +108,6 @@ namespace mine.web.Controllers
             var model = new BoardsIndexModel();
             foreach (var forumGroup in forumGroups)
             {
-
                 var forumGroupModel = PrepareForumGroupModel(forumGroup);
                 model.ForumGroups.Add(forumGroupModel);
             }
