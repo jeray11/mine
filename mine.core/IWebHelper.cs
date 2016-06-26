@@ -14,5 +14,21 @@ namespace mine.core
         /// <param name="name">Name</param>
         /// <returns>Server variable</returns>
         string ServerVariables(string name);
+        /// <summary>
+        /// Get context IP address
+        /// </summary>
+        /// <returns>URL referrer</returns>
+        string GetCurrentIpAddress();
+        /// <summary>
+        /// Gets this page name
+        /// </summary>
+        /// <param name="includeQueryString">Value indicating whether to include query strings</param>
+        /// <returns>Page name</returns>
+        string GetThisPageUrl(bool includeQueryString);
+        /// <summary>
+        /// Get URL referrer
+        /// </summary>
+        /// <returns>URL referrer</returns>
+        string GetUrlReferrer();
     }
 }
