@@ -67,6 +67,7 @@
     <Compile Include="Configuration\Setting.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Domain\BaseEntity.cs" />
+    <Compile Include="Domain\Common\CommonSettings.cs" />
     <Compile Include="Domain\Configuration\Setting.cs" />
     <Compile Include="Domain\Customers\Customer.cs" />
     <Compile Include="Domain\Customers\CustomerSettings.cs" />

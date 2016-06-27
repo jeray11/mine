@@ -30,5 +30,10 @@ namespace mine.core
         /// </summary>
         /// <returns>URL referrer</returns>
         string GetUrlReferrer();
+        /// <summary>
+        /// Gets a value indicating whether current connection is secured
+        /// </summary>
+        /// <returns>true - secured, false - not secured</returns>
+        bool IsCurrentConnectionSecured();
     }
 }

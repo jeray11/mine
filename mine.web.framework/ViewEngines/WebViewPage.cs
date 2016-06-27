@@ -1,4 +1,4 @@
-﻿using mine.web.framework.Localization;
+﻿using mine.services.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +19,10 @@ namespace mine.web.framework.ViewEngines
             var resFormat = _localizationService.GetResource(format);
             if (string.IsNullOrEmpty(resFormat))
             {
-                return new LocalizedString(format);
+                return new HtmlString(format);
             }
             return
-                new LocalizedString((args == null || args.Length == 0)
+                new HtmlString((args == null || args.Length == 0)
                                         ? resFormat
                                         : string.Format(resFormat, args));
         }

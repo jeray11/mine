@@ -14,6 +14,7 @@ using mine.services.Dictionary;
 using mine.services.Forums;
 using mine.services.Helpers;
 using mine.services.Localization;
+using mine.services.Logging;
 using mine.services.Media;
 using mine.services.Stores;
 using mine.web.framework.Mvc;
@@ -90,7 +91,7 @@ namespace mine.web.framework
             builder.RegisterSource(new SettingsSource());
             builder.RegisterType<DateTimeHelper>().As<IDateTimeHelper>().InstancePerLifetimeScope();
             builder.RegisterType<StoreService>().As<IStoreService>().InstancePerLifetimeScope();
-
+            builder.RegisterType<DefaultLogger>().As<ILogger>().InstancePerLifetimeScope();
             builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
             //data layer
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();

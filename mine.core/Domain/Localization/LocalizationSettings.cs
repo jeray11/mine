@@ -13,5 +13,9 @@ namespace mine.core.Domain.Localization
         /// A value indicating whether to load all LocaleStringResource records on application startup
         /// </summary>
         public bool LoadAllLocaleRecordsOnStartup { get; set; }
+        /// <summary>
+        /// A value indicating whether SEO friendly URLs with multiple languages are enabled
+        /// </summary>
+        public bool SeoFriendlyUrlsForLanguagesEnabled { get; set; }
     }
 }

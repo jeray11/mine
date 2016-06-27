@@ -7,6 +7,7 @@ using mine.core.Domain.Customers;
 using mine.core.Domain.Logging;
 using mine.core;
 using mine.core.Data;
+using mine.core.Domain.Common;
 
 namespace mine.services.Logging
 {
@@ -14,10 +15,29 @@ namespace mine.services.Logging
     {
         private readonly IWebHelper _webHelper;
         private readonly IRepository<Log> _logRepository;
-        public DefaultLogger(IWebHelper webHelper, IRepository<Log> logRepository)
+        private readonly CommonSettings _commonSettings;
+        public DefaultLogger(IWebHelper webHelper, IRepository<Log> logRepository,CommonSettings commonSettings)
         {
             this._webHelper = webHelper;
             this._logRepository = logRepository;
+            this._commonSettings = commonSettings;
+        }
+        /// <summary>
+        /// Gets a value indicating whether this message should not be logged
+        /// </summary>
+        /// <param name="message">Message</param>
+        /// <returns>Result</returns>
+        protected virtual bool IgnoreLog(string message)
+        {
+            if (_commonSettings.IgnoreLogWordlist.Count == 0)
+                return false;
+
+            if (String.IsNullOrWhiteSpace(message))
+                return false;
+
+            return _commonSettings
+                .IgnoreLogWordlist
+                .Any(x => message.IndexOf(x, StringComparison.InvariantCultureIgnoreCase) >= 0);
         }
         public Log InsertLog(LogLevel logLevel, string shortMessage, string fullMessage = "", Customer customer = null)
         {

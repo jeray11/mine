@@ -12,6 +12,6 @@ namespace mine.core
         /// <summary>
         /// Get or set current user working language
         /// </summary>
-        Language WorkingLanguage { get; set; }
+        Language WorkingLanguage { get; }
     }
 }
