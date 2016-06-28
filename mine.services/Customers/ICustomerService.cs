@@ -15,5 +15,8 @@ namespace mine.services.Customers
         /// <param name="systemName">System name</param>
         /// <returns>Customer</returns>
        Customer GetCustomerBySystemName(string systemName);
+
+        Customer GetCustomerByUsername(string userName);
+        Customer GetCustomerByEmail(string email);
     }
 }

@@ -26,12 +26,23 @@ namespace mine.services.Customers
            this._cacheManager = cacheManager;
            this._repository = repository;
        }
+
+        public Customer GetCustomerByEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return null;
+            var query = from c in _repository.Table
+                        where c.Email == email
+                        select c;
+            return query.FirstOrDefault();
+        }
+
         /// <summary>
         /// Get customer by system role
         /// </summary>
         /// <param name="systemName">System name</param>
         /// <returns>Customer</returns>
-       public Customer GetCustomerBySystemName(string systemName) 
+        public Customer GetCustomerBySystemName(string systemName) 
        {
            string key = string.Format("CUSTOMERROLES_BY_SYSTEMNAME_KEY", systemName);
            return _cacheManager.Get(key, () => {
@@ -42,5 +53,15 @@ namespace mine.services.Customers
                return query.FirstOrDefault();
            });
        }
+
+        public Customer GetCustomerByUsername(string userName)
+        {
+            if (string.IsNullOrWhiteSpace(userName))
+                return null;
+            var query = from c in _repository.Table
+                        where c.Username == userName
+                        select c;
+            return query.FirstOrDefault();
+        }
     }
 }

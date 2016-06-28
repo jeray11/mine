@@ -71,6 +71,7 @@
     <Compile Include="Domain\Common\CommonSettings.cs" />
     <Compile Include="Domain\Configuration\Setting.cs" />
     <Compile Include="Domain\Customers\Customer.cs" />
+    <Compile Include="Domain\Customers\CustomerExtensions.cs" />
     <Compile Include="Domain\Customers\CustomerSettings.cs" />
     <Compile Include="Domain\Customers\PasswordFormat.cs" />
     <Compile Include="Domain\Customers\SystemCustomerNames.cs" />
