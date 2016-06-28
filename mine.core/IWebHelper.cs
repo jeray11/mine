@@ -35,5 +35,11 @@ namespace mine.core
         /// </summary>
         /// <returns>true - secured, false - not secured</returns>
         bool IsCurrentConnectionSecured();
+         /// <summary>
+        /// Maps a virtual path to a physical disk path.
+        /// </summary>
+        /// <param name="path">The path to map. E.g. "~/bin"</param>
+        /// <returns>The physical path. E.g. "c:\inetpub\wwwroot\bin"</returns>
+        string MapPath(string path);
     }
 }

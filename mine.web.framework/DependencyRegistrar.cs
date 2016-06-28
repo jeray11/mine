@@ -10,6 +10,7 @@ using mine.core.Fakes;
 using mine.core.Infrastructure;
 using mine.data;
 using mine.services.Configuration;
+using mine.services.Customers;
 using mine.services.Dictionary;
 using mine.services.Forums;
 using mine.services.Helpers;
@@ -93,6 +94,9 @@ namespace mine.web.framework
             builder.RegisterType<StoreService>().As<IStoreService>().InstancePerLifetimeScope();
             builder.RegisterType<DefaultLogger>().As<ILogger>().InstancePerLifetimeScope();
             builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
+            builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
+            builder.RegisterType<StoreMappingService>().As<IStoreMappingService>().InstancePerLifetimeScope();
+            builder.RegisterType<LanguageService>().As<ILanguageService>().InstancePerLifetimeScope();
             //data layer
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
             builder.Register<IDbContext>(c=>new MineContext()).InstancePerLifetimeScope();

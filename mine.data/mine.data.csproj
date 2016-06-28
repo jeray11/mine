@@ -55,11 +55,13 @@
     <Compile Include="EfRepository.cs" />
     <Compile Include="IDbContext.cs" />
     <Compile Include="Mapping\Configuration\SettingMap.cs" />
+    <Compile Include="Mapping\Customers\CustomerMap.cs" />
     <Compile Include="Mapping\Forums\ForumGroupMap.cs" />
     <Compile Include="Mapping\Forums\ForumMap.cs" />
     <Compile Include="Mapping\Localization\LanguageMap.cs" />
     <Compile Include="Mapping\Localization\LocaleStringResourceMap.cs" />
     <Compile Include="Mapping\Logging\LogMap.cs" />
+    <Compile Include="Mapping\Stores\StoreMappingMap.cs" />
     <Compile Include="Mapping\Stores\StoreMap.cs" />
     <Compile Include="Migrations\201606110008297_init.cs" />
     <Compile Include="Migrations\201606110008297_init.Designer.cs">
@@ -76,6 +78,10 @@
     <Compile Include="Migrations\201606221407506_11111.cs" />
     <Compile Include="Migrations\201606221407506_11111.Designer.cs">
       <DependentUpon>201606221407506_11111.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606280356336_添加customer、Language表等.cs" />
+    <Compile Include="Migrations\201606280356336_添加customer、Language表等.Designer.cs">
+      <DependentUpon>201606280356336_添加customer、Language表等.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MineContext.cs" />
@@ -103,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606221407506_11111.resx">
       <DependentUpon>201606221407506_11111.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606280356336_添加customer、Language表等.resx">
+      <DependentUpon>201606280356336_添加customer、Language表等.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

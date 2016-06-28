@@ -67,10 +67,13 @@
     <Compile Include="Configuration\Setting.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Domain\BaseEntity.cs" />
+    <Compile Include="Domain\Catalog\CatalogSettings.cs" />
     <Compile Include="Domain\Common\CommonSettings.cs" />
     <Compile Include="Domain\Configuration\Setting.cs" />
     <Compile Include="Domain\Customers\Customer.cs" />
     <Compile Include="Domain\Customers\CustomerSettings.cs" />
+    <Compile Include="Domain\Customers\PasswordFormat.cs" />
+    <Compile Include="Domain\Customers\SystemCustomerNames.cs" />
     <Compile Include="Domain\Forums\Forum.cs" />
     <Compile Include="Domain\Forums\ForumGroup.cs" />
     <Compile Include="Domain\Forums\ForumSettings.cs" />
@@ -80,8 +83,10 @@
     <Compile Include="Domain\Logging\Log.cs" />
     <Compile Include="Domain\Logging\LogLevel.cs" />
     <Compile Include="Domain\Media\MediaSettings.cs" />
+    <Compile Include="Domain\Stores\IStoreMappingSupported.cs" />
     <Compile Include="Domain\Stores\Store.cs" />
     <Compile Include="Domain\Stores\StoreExtensions.cs" />
+    <Compile Include="Domain\Stores\StoreMapping.cs" />
     <Compile Include="Fakes\FakeHttpContext.cs" />
     <Compile Include="Infrastructure\AppDomainTypeFinder.cs" />
     <Compile Include="Infrastructure\ContainerManager.cs" />

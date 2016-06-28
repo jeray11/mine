@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mine.core.Domain.Stores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace mine.core.Domain.Localization
 {
-    public class Language:BaseEntity
+    public class Language : BaseEntity, IStoreMappingSupported
     {
         private ICollection<LocaleStringResource> _localeStringResources;
         /// <summary>

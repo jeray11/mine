@@ -8,5 +8,10 @@ namespace mine.services.Helpers
 {
     public interface IUserAgentHelper
     {
+        /// <summary>
+        /// Get a value indicating whether the request is made by search engine (web crawler)
+        /// </summary>
+        /// <returns>Result</returns>
+        bool IsSearchEngine();
     }
 }
