@@ -1,24 +1,32 @@
-﻿using System;
+﻿using mine.core.Domain.Customers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Owin.Security;
+using System.Security.Claims;
 
 namespace mine.services.Authentication
 {
    public class AuthenticationService:IAuthenticationService
     {
-        public void SignIn(core.Domain.Customers.Customer customer, bool createPersistentCookie)
+       private Customer _cachedCustomer;
+        public void SignIn(Customer customer, bool createPersistentCookie)
         {
-            throw new NotImplementedException();
+            var now = DateTime.UtcNow.ToLocalTime();
+            ClaimsIdentity claim=new ClaimsIdentity();
+            AuthenticationProperties proper=new AuthenticationProperties();
+            AuthenticationTicket ticket = new AuthenticationTicket(claim, proper);
         }
 
         public void SignOut()
         {
-            throw new NotImplementedException();
+            _cachedCustomer = null;
+            
         }
 
-        public core.Domain.Customers.Customer GetAuthenticatedCustomer()
+        public Customer GetAuthenticatedCustomer()
         {
             throw new NotImplementedException();
         }
