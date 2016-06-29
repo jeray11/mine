@@ -48,6 +48,8 @@ namespace mine.data
             : base(nameOrConnectionString)
         {
             //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = true;
+            Database.SetInitializer(
+                    new CreateDatabaseIfNotExists<MineContext>());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

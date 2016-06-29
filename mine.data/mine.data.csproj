@@ -87,9 +87,17 @@
     <Compile Include="Migrations\201606280356336_11.Designer.cs">
       <DependentUpon>201606280356336_11.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606290144393_添加customerrole表等.cs" />
-    <Compile Include="Migrations\201606290144393_添加customerrole表等.Designer.cs">
-      <DependentUpon>201606290144393_添加customerrole表等.cs</DependentUpon>
+    <Compile Include="Migrations\201606290144393_111.cs" />
+    <Compile Include="Migrations\201606290144393_111.Designer.cs">
+      <DependentUpon>201606290144393_111.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606291347172_add_tables_GenericAttribute.cs" />
+    <Compile Include="Migrations\201606291347172_add_tables_GenericAttribute.Designer.cs">
+      <DependentUpon>201606291347172_add_tables_GenericAttribute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606291401296_处理错误1.cs" />
+    <Compile Include="Migrations\201606291401296_处理错误1.Designer.cs">
+      <DependentUpon>201606291401296_处理错误1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MineContext.cs" />
@@ -121,8 +129,14 @@
     <EmbeddedResource Include="Migrations\201606280356336_11.resx">
       <DependentUpon>201606280356336_11.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606290144393_添加customerrole表等.resx">
-      <DependentUpon>201606290144393_添加customerrole表等.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606290144393_111.resx">
+      <DependentUpon>201606290144393_111.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606291347172_add_tables_GenericAttribute.resx">
+      <DependentUpon>201606291347172_add_tables_GenericAttribute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606291401296_处理错误1.resx">
+      <DependentUpon>201606291401296_处理错误1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

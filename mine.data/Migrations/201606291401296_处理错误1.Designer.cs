@@ -7,13 +7,13 @@ namespace mine.data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class 添加customerrole表等 : IMigrationMetadata
+    public sealed partial class 处理错误1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(添加customerrole表等));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(处理错误1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201606290144393_添加customerrole表等"; }
+            get { return "201606291401296_处理错误1"; }
         }
         
         string IMigrationMetadata.Source
