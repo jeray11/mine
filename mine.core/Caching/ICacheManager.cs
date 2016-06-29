@@ -49,5 +49,15 @@ namespace mine.core.Caching
         /// <param name="data">Data</param>
         /// <param name="cacheTime">Cache time</param>
         void Set(string key, object data, int cacheTime);
+        /// <summary>
+        /// Removes items by pattern
+        /// </summary>
+        /// <param name="pattern">pattern</param>
+        void RemoveByPattern(string pattern);
+        /// <summary>
+        /// remove item by key
+        /// </summary>
+        /// <param name="key"></param>
+        void Remove(string key);
     }
 }

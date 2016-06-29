@@ -9,9 +9,11 @@ using mine.core.Data;
 using mine.core.Fakes;
 using mine.core.Infrastructure;
 using mine.data;
+using mine.services.Common;
 using mine.services.Configuration;
 using mine.services.Customers;
 using mine.services.Dictionary;
+using mine.services.Events;
 using mine.services.Forums;
 using mine.services.Helpers;
 using mine.services.Localization;
@@ -97,9 +99,12 @@ namespace mine.web.framework
             builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
             builder.RegisterType<StoreMappingService>().As<IStoreMappingService>().InstancePerLifetimeScope();
             builder.RegisterType<LanguageService>().As<ILanguageService>().InstancePerLifetimeScope();
+            builder.RegisterType<GenericAttributeService>().As<IGenericAttributeService>().InstancePerLifetimeScope();
             //data layer
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
             builder.Register<IDbContext>(c=>new MineContext()).InstancePerLifetimeScope();
+            //event publisher
+            builder.RegisterType<EventPublisher>().As<IEventPublisher>().SingleInstance();
         }
     }
 

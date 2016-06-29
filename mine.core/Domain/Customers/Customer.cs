@@ -8,6 +8,7 @@ namespace mine.core.Domain.Customers
 {
     public class Customer:BaseEntity
     {
+        private ICollection<CustomerRole> _customerRoles;
         /// <summary>
         /// Gets or sets the customer Guid
         /// </summary>
@@ -112,5 +113,14 @@ namespace mine.core.Domain.Customers
         /// Gets or sets the date and time of last activity
         /// </summary>
         public DateTime LastActivityDateUtc { get; set; }
+
+        /// <summary>
+        /// Gets or sets the customer roles
+        /// </summary>
+        public virtual ICollection<CustomerRole> CustomerRoles
+        {
+            get { return _customerRoles ?? (_customerRoles = new List<CustomerRole>()); }
+            protected set { _customerRoles = value; }
+        }
     }
 }

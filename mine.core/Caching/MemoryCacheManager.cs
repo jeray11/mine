@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace mine.core.Caching
@@ -13,10 +14,19 @@ namespace mine.core.Caching
         /// Variable (lock) to support thread-safe
         /// </summary>
         private static readonly object _syncObject = new object();
-
+        /// <summary>
+        /// Cache object
+        /// </summary>
+        protected ObjectCache Cache
+        {
+            get
+            {
+                return MemoryCache.Default;
+            }
+        }
         public T Get<T>(string key)
         {
-            return (T)MemoryCache.Default[key];
+            return (T)Cache[key];
         }
 
         public T Get<T>(string key, Func<T> acquire)
@@ -50,14 +60,31 @@ namespace mine.core.Caching
 
         public bool IsSet(string key)
         {
-            return MemoryCache.Default.Contains(key);
+            return Cache.Contains(key);
         }
 
         public void Set(string key, object data, int cacheTime)
         {
             if (data == null)
                 return;
-            MemoryCache.Default.Set(key, data, DateTime.Now.AddMinutes(cacheTime));
+            Cache.Set(key, data, DateTime.Now.AddMinutes(cacheTime));
+        }
+
+        public void RemoveByPattern(string pattern)
+        {
+            var regex = new Regex(pattern, RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            var keysToRemove = new List<String>();
+            foreach (var item in Cache)
+                if (regex.IsMatch(item.Key))
+                    keysToRemove.Add(item.Key);
+            foreach (string key in keysToRemove)
+            {
+                Remove(key);
+            }
+        }
+        public void Remove(string key) 
+        {
+            Cache.Remove(key);
         }
     }
 }

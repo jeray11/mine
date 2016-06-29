@@ -21,5 +21,17 @@ namespace mine.core.Data
         /// </summary>
         /// <param name="entity">Entity</param>
         void Insert(T entity);
+        /// <summary>
+        /// Get entity by identifier
+        /// </summary>
+        /// <param name="id">Identifier</param>
+        /// <returns>Entity</returns>
+        T GetById(object id);
+        /// <summary>
+        /// Delete entity
+        /// </summary>
+        /// <param name="entity">Entity</param>
+        void Delete(T entity);
+        void Update(T entity);
     }
 }

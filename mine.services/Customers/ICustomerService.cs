@@ -18,5 +18,15 @@ namespace mine.services.Customers
 
         Customer GetCustomerByUsername(string userName);
         Customer GetCustomerByEmail(string email);
+
+        Customer GetCustomerById(int customerId);
+        Customer GetCustomerByGuid(Guid customerGuid);
+        Customer InsertGuestCustomer();
+        /// <summary>
+        /// Gets a customer role
+        /// </summary>
+        /// <param name="systemName">Customer role system name</param>
+        /// <returns>Customer role</returns>
+        CustomerRole GetCustomerRoleBySystemName(string systemName);
     }
 }

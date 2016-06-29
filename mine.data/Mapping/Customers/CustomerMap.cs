@@ -19,6 +19,8 @@ namespace mine.data.Mapping.Customers
            this.Property(u => u.SystemName).HasMaxLength(400);
 
            this.Ignore(u => u.PasswordFormat);
+
+           this.HasMany(c => c.CustomerRoles).WithMany().Map(m => m.ToTable("Customer_CustomerRole_Mapping"));
        }
     }
 }

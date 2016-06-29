@@ -52,15 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseEntityExtensions.cs" />
     <Compile Include="EfRepository.cs" />
     <Compile Include="IDbContext.cs" />
+    <Compile Include="Mapping\Common\GenericAttributeMap.cs" />
     <Compile Include="Mapping\Configuration\SettingMap.cs" />
+    <Compile Include="Mapping\Customers\CustomerRoleMap.cs" />
     <Compile Include="Mapping\Customers\CustomerMap.cs" />
     <Compile Include="Mapping\Forums\ForumGroupMap.cs" />
     <Compile Include="Mapping\Forums\ForumMap.cs" />
     <Compile Include="Mapping\Localization\LanguageMap.cs" />
     <Compile Include="Mapping\Localization\LocaleStringResourceMap.cs" />
     <Compile Include="Mapping\Logging\LogMap.cs" />
+    <Compile Include="Mapping\Security\PermissionRecord.cs" />
     <Compile Include="Mapping\Stores\StoreMappingMap.cs" />
     <Compile Include="Mapping\Stores\StoreMap.cs" />
     <Compile Include="Migrations\201606110008297_init.cs" />
@@ -79,9 +83,13 @@
     <Compile Include="Migrations\201606221407506_11111.Designer.cs">
       <DependentUpon>201606221407506_11111.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606280356336_添加customer、Language表等.cs" />
-    <Compile Include="Migrations\201606280356336_添加customer、Language表等.Designer.cs">
-      <DependentUpon>201606280356336_添加customer、Language表等.cs</DependentUpon>
+    <Compile Include="Migrations\201606280356336_11.cs" />
+    <Compile Include="Migrations\201606280356336_11.Designer.cs">
+      <DependentUpon>201606280356336_11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606290144393_添加customerrole表等.cs" />
+    <Compile Include="Migrations\201606290144393_添加customerrole表等.Designer.cs">
+      <DependentUpon>201606290144393_添加customerrole表等.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MineContext.cs" />
@@ -110,10 +118,14 @@
     <EmbeddedResource Include="Migrations\201606221407506_11111.resx">
       <DependentUpon>201606221407506_11111.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606280356336_添加customer、Language表等.resx">
-      <DependentUpon>201606280356336_添加customer、Language表等.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606280356336_11.resx">
+      <DependentUpon>201606280356336_11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606290144393_添加customerrole表等.resx">
+      <DependentUpon>201606290144393_添加customerrole表等.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

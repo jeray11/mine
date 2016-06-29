@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using mine.core.Domain.Localization;
 using System.Web;
 using mine.web.framework.Localization;
+using mine.services;
 using mine.services.Localization;
 using mine.services.Stores;
 using mine.core.Domain.Customers;
@@ -14,20 +15,26 @@ using mine.core.Fakes;
 using mine.services.Customers;
 using mine.services.Helpers;
 using mine.services.Authentication;
+using mine.services.Common;
 
 namespace mine.web.framework
 {
     public class WebWorkContext : IWorkContext
     {
+        private const string CustomerCookieName = "Mine.customer";
+
         private Language _cachedLanguage;
         private readonly HttpContextBase _httpContext;
         private readonly LocalizationSettings _localizationSettings;
         private readonly ILanguageService _languageService;
         private readonly IStoreMappingService _storeMappingService;
+        private Customer _originalCustomerIfImpersonated;
         private Customer _cachedCustomer;
         private readonly ICustomerService _customerService;
         private readonly IUserAgentHelper _userAgentHelper;
         private readonly IAuthenticationService _authenticationService;
+        private readonly IGenericAttributeService _genericAttributeService;
+        private readonly IStoreContext _storeContext;
         public WebWorkContext(
             HttpContextBase httpContext, 
             LocalizationSettings localizationSettings, 
@@ -35,7 +42,9 @@ namespace mine.web.framework
             IStoreMappingService storeMappingService,
             ICustomerService customerService,
             IUserAgentHelper userAgentHelper,
-            IAuthenticationService authenticationService)
+            IAuthenticationService authenticationService,
+            IGenericAttributeService genericAttributeService,
+            IStoreContext storeContext)
         {
             this._httpContext = httpContext;
             this._localizationSettings = localizationSettings;
@@ -44,6 +53,8 @@ namespace mine.web.framework
             this._customerService = customerService;
             this._userAgentHelper = userAgentHelper;
             this._authenticationService = authenticationService;
+            this._genericAttributeService = genericAttributeService;
+            this._storeContext = storeContext;
         }
         public Language WorkingLanguage
         {
@@ -71,6 +82,45 @@ namespace mine.web.framework
                         }
                     }
                 }
+                if (detectedLanguage != null) 
+                {
+                    //the language is detected. now we need to save it
+                    if (this.CurrentCustomer.GetAttribute<int>(SystemCustomerAttributeNames.LanguageId,
+                        _genericAttributeService, _storeContext.CurrentStore.Id) != detectedLanguage.Id)
+                    {
+                        _genericAttributeService.SaveAttribute(this.CurrentCustomer, SystemCustomerAttributeNames.LanguageId,
+                            detectedLanguage.Id, _storeContext.CurrentStore.Id);
+                    }
+                }
+                var allLanguages = _languageService.GetAllLanguages(storeId: _storeContext.CurrentStore.Id);
+                //find current customer language
+                var languageId = this.CurrentCustomer.GetAttribute<int>(SystemCustomerAttributeNames.LanguageId,
+                    _genericAttributeService, _storeContext.CurrentStore.Id);
+                var language = allLanguages.FirstOrDefault(x => x.Id == languageId);
+                if (language == null)
+                {
+                    //it not specified, then return the first (filtered by current store) found one
+                    language = allLanguages.FirstOrDefault();
+                }
+                if (language == null)
+                {
+                    //it not specified, then return the first found one
+                    language = _languageService.GetAllLanguages().FirstOrDefault();
+                }
+                //cache
+                _cachedLanguage = language;
+                return _cachedLanguage;
+            }
+            set 
+            {
+                var languageId = value != null ? value.Id : 0;
+                _genericAttributeService.SaveAttribute(this.CurrentCustomer,
+                    SystemCustomerAttributeNames.LanguageId,
+                    languageId, _storeContext.CurrentStore.Id);
+
+                //reset cache
+                //_cachedLanguage =null; nop是这样的 感觉不对
+                _cachedLanguage = value;
             }
         }
 
@@ -179,6 +229,55 @@ namespace mine.web.framework
             var language = _languageService
                 .GetAllLanguages()
                 .FirstOrDefault(l => seoCode.Equals(l.UniqueSeoCode, StringComparison.InvariantCultureIgnoreCase));
+            if (language != null && language.Published && _storeMappingService.Authorize(language))
+            {
+                return language;
+            }
+
+            return null;
+        }
+        protected virtual HttpCookie GetCustomerCookie()
+        {
+            if (_httpContext == null || _httpContext.Request == null)
+                return null;
+
+            return _httpContext.Request.Cookies[CustomerCookieName];
+        }
+        protected virtual void SetCustomerCookie(Guid customerGuid)
+        {
+            if (_httpContext != null && _httpContext.Response != null)
+            {
+                var cookie = new HttpCookie(CustomerCookieName);
+                cookie.HttpOnly = true;
+                cookie.Value = customerGuid.ToString();
+                if (customerGuid == Guid.Empty)
+                {
+                    cookie.Expires = DateTime.Now.AddMonths(-1);
+                }
+                else
+                {
+                    int cookieExpires = 24 * 365; //TODO make configurable
+                    cookie.Expires = DateTime.Now.AddHours(cookieExpires);
+                }
+
+                _httpContext.Response.Cookies.Remove(CustomerCookieName);
+                _httpContext.Response.Cookies.Add(cookie);
+            }
+        }
+        protected virtual Language GetLanguageFromBrowserSettings()
+        {
+            if (_httpContext == null ||
+                _httpContext.Request == null ||
+                _httpContext.Request.UserLanguages == null)
+                return null;
+
+            var userLanguage = _httpContext.Request.UserLanguages.FirstOrDefault();
+            if (String.IsNullOrEmpty(userLanguage))
+                return null;
+
+            var language = _languageService
+                .GetAllLanguages()
+                .FirstOrDefault(l => userLanguage.Equals(l.LanguageCulture, StringComparison.InvariantCultureIgnoreCase));
             if (language != null && language.Published && _storeMappingService.Authorize(language))
             {
                 return language;

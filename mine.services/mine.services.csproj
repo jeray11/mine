@@ -62,12 +62,18 @@
   <ItemGroup>
     <Compile Include="Authentication\AuthenticationService.cs" />
     <Compile Include="Authentication\IAuthenticationService.cs" />
+    <Compile Include="BaseEntityExtensions.cs" />
+    <Compile Include="Common\GenericAttributeService.cs" />
+    <Compile Include="Common\IGenericAttributeService.cs" />
     <Compile Include="Configuration\ISettingService.cs" />
     <Compile Include="Configuration\SettingService.cs" />
     <Compile Include="Customers\CustomerService.cs" />
     <Compile Include="Customers\ICustomerService.cs" />
     <Compile Include="Dictionary\CountryService.cs" />
     <Compile Include="Dictionary\ICountryService.cs" />
+    <Compile Include="Events\EventPublisher.cs" />
+    <Compile Include="Events\EventPublisherExtensions.cs" />
+    <Compile Include="Events\IEventPublisher.cs" />
     <Compile Include="Forums\ForumService.cs" />
     <Compile Include="Forums\IForumService.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
@@ -93,6 +99,10 @@
     <ProjectReference Include="..\mine.core\mine.core.csproj">
       <Project>{bf6f845d-c1ee-4d47-bf70-a41bee812c52}</Project>
       <Name>mine.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mine.data\mine.data.csproj">
+      <Project>{a886a61e-01c7-411e-8f1c-9f219c279bc3}</Project>
+      <Name>mine.data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

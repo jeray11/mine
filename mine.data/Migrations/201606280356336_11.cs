@@ -3,7 +3,7 @@ namespace mine.data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class 添加customerLanguage表等 : DbMigration
+    public partial class _11 : DbMigration
     {
         public override void Up()
         {
