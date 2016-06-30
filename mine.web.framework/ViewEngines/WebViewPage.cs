@@ -1,4 +1,5 @@
-﻿using mine.services.Localization;
+﻿using mine.core.Infrastructure;
+using mine.services.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,14 @@ namespace mine.web.framework.ViewEngines
                 new HtmlString((args == null || args.Length == 0)
                                         ? resFormat
                                         : string.Format(resFormat, args));
+        }
+
+        public override void InitHelpers()
+        {
+            base.InitHelpers();
+
+            _localizationService = EngineContext.Current.Resolve<ILocalizationService>();
+            
         }
 
     }

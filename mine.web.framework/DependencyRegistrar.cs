@@ -9,6 +9,7 @@ using mine.core.Data;
 using mine.core.Fakes;
 using mine.core.Infrastructure;
 using mine.data;
+using mine.services.Authentication;
 using mine.services.Common;
 using mine.services.Configuration;
 using mine.services.Customers;
@@ -80,12 +81,14 @@ namespace mine.web.framework
 
             //cache manager
             builder.RegisterType<MemoryCacheManager>().As<ICacheManager>().Named<ICacheManager>("mine_cache_static").SingleInstance();
-            //builder.RegisterType<PerRequestCacheManager>().As<ICacheManager>().Named<ICacheManager>("nop_cache_per_request").InstancePerLifetimeScope();
+            builder.RegisterType<PerRequestCacheManager>().As<ICacheManager>().Named<ICacheManager>("nop_cache_per_request").InstancePerLifetimeScope();
 
             //service
             builder.RegisterType<ForumService>().As<IForumService>().InstancePerLifetimeScope();
             //pass MemoryCacheManager as cacheManager (cache locales between requests)
-            builder.RegisterType<LocalizationService>().As<ILocalizationService>().InstancePerLifetimeScope();
+            builder.RegisterType<LocalizationService>().As<ILocalizationService>()
+                 .WithParameter(ResolvedParameter.ForNamed<ICacheManager>("nop_cache_static"))
+                .InstancePerLifetimeScope();
             builder.RegisterType<PictureService>().As<IPictureService>().InstancePerLifetimeScope();
             builder.RegisterType<CountryService>().As<ICountryService>().InstancePerLifetimeScope();
             builder.RegisterType<SettingService>().As<ISettingService>()
@@ -97,9 +100,13 @@ namespace mine.web.framework
             builder.RegisterType<DefaultLogger>().As<ILogger>().InstancePerLifetimeScope();
             builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
             builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
-            builder.RegisterType<StoreMappingService>().As<IStoreMappingService>().InstancePerLifetimeScope();
+            //pass MemoryCacheManager as cacheManager (cache settings between requests)
+            builder.RegisterType<StoreMappingService>().As<IStoreMappingService>()
+               .WithParameter(ResolvedParameter.ForNamed<ICacheManager>("mine_cache_static"))
+                .InstancePerLifetimeScope();
             builder.RegisterType<LanguageService>().As<ILanguageService>().InstancePerLifetimeScope();
             builder.RegisterType<GenericAttributeService>().As<IGenericAttributeService>().InstancePerLifetimeScope();
+            builder.RegisterType<AuthenticationService>().As<IAuthenticationService>().InstancePerLifetimeScope();
             //data layer
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
             builder.Register<IDbContext>(c=>new MineContext()).InstancePerLifetimeScope();

@@ -7,13 +7,13 @@ namespace mine.data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class add_table_setting : IMigrationMetadata
+    public sealed partial class init1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(add_table_setting));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201606211354383_add_table_setting"; }
+            get { return "201606300928383_init1"; }
         }
         
         string IMigrationMetadata.Source

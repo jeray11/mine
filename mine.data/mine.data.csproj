@@ -67,37 +67,9 @@
     <Compile Include="Mapping\Security\PermissionRecord.cs" />
     <Compile Include="Mapping\Stores\StoreMappingMap.cs" />
     <Compile Include="Mapping\Stores\StoreMap.cs" />
-    <Compile Include="Migrations\201606110008297_init.cs" />
-    <Compile Include="Migrations\201606110008297_init.Designer.cs">
-      <DependentUpon>201606110008297_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606211354383_add_table_setting.cs" />
-    <Compile Include="Migrations\201606211354383_add_table_setting.Designer.cs">
-      <DependentUpon>201606211354383_add_table_setting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606211449496_add_table_store.cs" />
-    <Compile Include="Migrations\201606211449496_add_table_store.Designer.cs">
-      <DependentUpon>201606211449496_add_table_store.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606221407506_11111.cs" />
-    <Compile Include="Migrations\201606221407506_11111.Designer.cs">
-      <DependentUpon>201606221407506_11111.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606280356336_11.cs" />
-    <Compile Include="Migrations\201606280356336_11.Designer.cs">
-      <DependentUpon>201606280356336_11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606290144393_111.cs" />
-    <Compile Include="Migrations\201606290144393_111.Designer.cs">
-      <DependentUpon>201606290144393_111.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606291347172_add_tables_GenericAttribute.cs" />
-    <Compile Include="Migrations\201606291347172_add_tables_GenericAttribute.Designer.cs">
-      <DependentUpon>201606291347172_add_tables_GenericAttribute.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606291401296_处理错误1.cs" />
-    <Compile Include="Migrations\201606291401296_处理错误1.Designer.cs">
-      <DependentUpon>201606291401296_处理错误1.cs</DependentUpon>
+    <Compile Include="Migrations\201606300928383_init1.cs" />
+    <Compile Include="Migrations\201606300928383_init1.Designer.cs">
+      <DependentUpon>201606300928383_init1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MineContext.cs" />
@@ -114,32 +86,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606110008297_init.resx">
-      <DependentUpon>201606110008297_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606211354383_add_table_setting.resx">
-      <DependentUpon>201606211354383_add_table_setting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606211449496_add_table_store.resx">
-      <DependentUpon>201606211449496_add_table_store.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606221407506_11111.resx">
-      <DependentUpon>201606221407506_11111.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606280356336_11.resx">
-      <DependentUpon>201606280356336_11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606290144393_111.resx">
-      <DependentUpon>201606290144393_111.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606291347172_add_tables_GenericAttribute.resx">
-      <DependentUpon>201606291347172_add_tables_GenericAttribute.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606291401296_处理错误1.resx">
-      <DependentUpon>201606291401296_处理错误1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606300928383_init1.resx">
+      <DependentUpon>201606300928383_init1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

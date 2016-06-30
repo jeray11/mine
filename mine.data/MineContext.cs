@@ -43,13 +43,15 @@ namespace mine.data
             }
         }
 
-        public MineContext() : base("name=MineContext") { }
+        public MineContext() : base("name=MineContext") 
+        {
+            Database.SetInitializer<MineContext>(null);
+        }
         public MineContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {
             //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = true;
-            Database.SetInitializer(
-                    new CreateDatabaseIfNotExists<MineContext>());
+           
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

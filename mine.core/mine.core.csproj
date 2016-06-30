@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Caching\ICacheManager.cs" />
     <Compile Include="Caching\MemoryCacheManager.cs" />
+    <Compile Include="Caching\PerRequestCacheManager.cs" />
     <Compile Include="CommonHelper.cs" />
     <Compile Include="ComponentModel\WriteLockDisposable.cs" />
     <Compile Include="Configuration\ISettings.cs" />

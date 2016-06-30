@@ -130,7 +130,7 @@ namespace mine.web.framework
         public virtual Customer CurrentCustomer
         {
             get
-            {
+             {
                 if (_cachedCustomer != null)
                     return _cachedCustomer;
                 Customer customer = null;
