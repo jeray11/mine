@@ -94,7 +94,7 @@ namespace mine.core.Infrastructure
 
         public T[] ResolveAll<T>()
         {
-            throw new NotImplementedException();
+            return ContainerManager.ResolveAll<T>();
         }
     }
 }

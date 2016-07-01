@@ -37,7 +37,59 @@ namespace mine.core.Infrastructure
             }
             return scope.ResolveKeyed<T>(key);
         }
-
+        public T[] ResolveAll<T>(string key = "", ILifetimeScope scope = null)
+        {
+            if (scope == null)
+            {
+                //no scope specified
+                scope = Scope();
+            }
+            if (string.IsNullOrEmpty(key))
+            {
+                return scope.Resolve<IEnumerable<T>>().ToArray();
+            }
+            return scope.ResolveKeyed<IEnumerable<T>>(key).ToArray();
+        }
+        public virtual object Resolve(Type type, ILifetimeScope scope = null)
+        {
+            if (scope == null)
+            {
+                //no scope specified
+                scope = Scope();
+            }
+            return scope.Resolve(type);
+        }
+        public virtual bool TryResolve(Type serviceType, ILifetimeScope scope, out object instance)
+        {
+            if (scope == null)
+            {
+                //no scope specified
+                scope = Scope();
+            }
+            return scope.TryResolve(serviceType, out instance);
+        }
+        public virtual object ResolveUnregistered(Type type, ILifetimeScope scope = null)
+        {
+            if (scope == null)
+            {
+                //no scope specified
+                scope = Scope();
+            }
+            var constructors = type.GetConstructors();
+            foreach (var constructor in constructors)
+            {
+                    var parameters = constructor.GetParameters();
+                    var parameterInstances = new List<object>();
+                    foreach (var parameter in parameters)
+                    {
+                        var service = Resolve(parameter.ParameterType, scope);
+                        if (service == null) break;
+                        parameterInstances.Add(service);
+                    }
+                    return Activator.CreateInstance(type, parameterInstances.ToArray());
+            }
+            throw new Exception("No contructor was found that had all the dependencies satisfied.");
+        }
         public virtual ILifetimeScope Scope()
         {
             try

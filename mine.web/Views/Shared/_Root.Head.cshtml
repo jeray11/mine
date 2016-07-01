@@ -1,0 +1,24 @@
+﻿@using mine.core.Domain.Common;
+@using mine.core.Infrastructure;
+@{
+    var displayMiniProfiler = EngineContext.Current.Resolve<mine.core.Domain.StoreInformationSettings>().DisplayMiniProfilerInPublicStore;
+    var commonSettings = EngineContext.Current.Resolve<CommonSettings>();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="generator" content="mine" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    @if (commonSettings.RenderXuaCompatible)
+    {
+        string.Format("<meta http-equiv=\"X-UA-Compatible\" content=\"{0}\" />", commonSettings.XuaCompatibleValue);
+    }
+</head>
+<body>
+
+</body>
+</html>

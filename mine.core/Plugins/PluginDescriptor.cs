@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mine.core.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -41,6 +42,18 @@ namespace mine.core.Plugins
 
         public Type PluginType { get; set; }
 
-
+        public T Instance<T>() where T:class,IPlugin
+        {
+            object instance;
+            if (!EngineContext.Current.ContainerManager.TryResolve(PluginType, null, out instance)) 
+            {
+                //not resolved
+                instance = EngineContext.Current.ContainerManager.ResolveUnregistered(PluginType);
+            }
+            var typedInstance = instance as T;
+            if (typedInstance != null)
+                typedInstance.PluginDescriptor = this;
+            return typedInstance;
+        }
     }
 }

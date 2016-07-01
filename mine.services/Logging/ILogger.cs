@@ -17,6 +17,7 @@ namespace mine.services.Logging
         /// <returns>Result</returns>
         bool IsEnabled(LogLevel level);
         void Warning(string message, Exception exception = null, Customer customer = null);
+        void Error(string message, Exception exception = null, Customer customer = null);
         /// <summary>
         /// Inserts a log item
         /// </summary>

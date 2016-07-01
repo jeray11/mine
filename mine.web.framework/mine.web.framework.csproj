@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyRegistrar.cs" />
+    <Compile Include="HtmlExtensions.cs" />
     <Compile Include="Localization\LocalizedUrlExtensions.cs" />
     <Compile Include="Mvc\IRouteProvider.cs" />
     <Compile Include="Mvc\IRoutePublisher.cs" />

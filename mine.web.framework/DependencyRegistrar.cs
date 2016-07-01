@@ -8,8 +8,10 @@ using mine.core.Configuration;
 using mine.core.Data;
 using mine.core.Fakes;
 using mine.core.Infrastructure;
+using mine.core.Plugins;
 using mine.data;
 using mine.services.Authentication;
+using mine.services.Cms;
 using mine.services.Common;
 using mine.services.Configuration;
 using mine.services.Customers;
@@ -69,7 +71,8 @@ namespace mine.web.framework
             builder.RegisterType<WebHelper>().As<IWebHelper>().InstancePerLifetimeScope();
             //user agent helper
             builder.RegisterType<UserAgentHelper>().As<IUserAgentHelper>().InstancePerLifetimeScope();//HTTP context and other related stuff
-            
+            //pluginfinder
+            builder.RegisterType<PluginFinder>().As<IPluginFinder>().InstancePerLifetimeScope();
 
             //controllers
             builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
@@ -100,6 +103,7 @@ namespace mine.web.framework
             builder.RegisterType<DefaultLogger>().As<ILogger>().InstancePerLifetimeScope();
             builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
             builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
+            builder.RegisterType<SubscriptionService>().As<ISubscriptionService>().InstancePerLifetimeScope();
             //pass MemoryCacheManager as cacheManager (cache settings between requests)
             builder.RegisterType<StoreMappingService>().As<IStoreMappingService>()
                .WithParameter(ResolvedParameter.ForNamed<ICacheManager>("mine_cache_static"))
@@ -107,6 +111,7 @@ namespace mine.web.framework
             builder.RegisterType<LanguageService>().As<ILanguageService>().InstancePerLifetimeScope();
             builder.RegisterType<GenericAttributeService>().As<IGenericAttributeService>().InstancePerLifetimeScope();
             builder.RegisterType<AuthenticationService>().As<IAuthenticationService>().InstancePerLifetimeScope();
+            builder.RegisterType<WidgetService>().As<IWidgetService>().InstancePerLifetimeScope();
             //data layer
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
             builder.Register<IDbContext>(c=>new MineContext()).InstancePerLifetimeScope();

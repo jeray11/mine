@@ -77,6 +77,10 @@ namespace mine.services.Logging
         {
             FilteredLog(LogLevel.Warning, message, exception, customer);
         }
+        public void Error(string message, Exception exception = null, Customer customer = null)
+        {
+            FilteredLog(LogLevel.Error, message, exception, customer);
+        }
 
         private void FilteredLog(LogLevel level, string message, Exception exception = null, Customer customer = null)
         {
