@@ -21,5 +21,9 @@ namespace mine.core.Domain.Localization
         /// A value indicating whether we should detect the current language by a customer region (browser settings)
         /// </summary>
         public bool AutomaticallyDetectLanguage { get; set; }
+        /// <summary>
+        ///  A value indicating whether to load all LocalizedProperty records on application startup
+        /// </summary>
+        public bool LoadAllLocalizedPropertiesOnStartup { get; set; }
     }
 }

@@ -63,20 +63,32 @@
     <Compile Include="Mapping\Forums\ForumMap.cs" />
     <Compile Include="Mapping\Localization\LanguageMap.cs" />
     <Compile Include="Mapping\Localization\LocaleStringResourceMap.cs" />
+    <Compile Include="Mapping\Localization\LocalizedPropertyMap.cs" />
     <Compile Include="Mapping\Logging\LogMap.cs" />
     <Compile Include="Mapping\Security\PermissionRecord.cs" />
     <Compile Include="Mapping\Stores\StoreMappingMap.cs" />
     <Compile Include="Mapping\Stores\StoreMap.cs" />
+    <Compile Include="Mapping\Topics\TopicMap.cs" />
     <Compile Include="Migrations\201606300928383_init1.cs" />
     <Compile Include="Migrations\201606300928383_init1.Designer.cs">
       <DependentUpon>201606300928383_init1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607050607049_add_table_Topic.cs" />
+    <Compile Include="Migrations\201607050607049_add_table_Topic.Designer.cs">
+      <DependentUpon>201607050607049_add_table_Topic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607050746393_add_table_LocalizedProperty.cs" />
+    <Compile Include="Migrations\201607050746393_add_table_LocalizedProperty.Designer.cs">
+      <DependentUpon>201607050746393_add_table_LocalizedProperty.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MineContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +100,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606300928383_init1.resx">
       <DependentUpon>201606300928383_init1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607050607049_add_table_Topic.resx">
+      <DependentUpon>201607050607049_add_table_Topic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607050746393_add_table_LocalizedProperty.resx">
+      <DependentUpon>201607050746393_add_table_LocalizedProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

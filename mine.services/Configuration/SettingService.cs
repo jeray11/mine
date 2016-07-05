@@ -141,5 +141,26 @@ namespace mine.services.Configuration
             public string Value { get; set; }
             public int StoreId { get; set; }
         }
+
+
+        public void SaveSetting<T>(T settings, int storeId=0) where T : ISettings, new()
+        {
+            if (settings == null)
+                throw new ArgumentNullException("settings");
+            var type = typeof(T);
+            string typename=type.Name;
+            var propinfos=type.GetProperties();
+            List<Setting> list = new List<Setting>();
+            foreach (var prop in propinfos)
+            {
+                Setting setting=new Setting{
+                    Name = string.Format("{0}.{1}", typename, prop.Name),
+                     StoreId=storeId,
+                     Value=Convert.ToString(prop.GetValue(settings))
+                };
+                list.Add(setting);
+            }
+            
+        }
     }
 }

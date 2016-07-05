@@ -11,5 +11,6 @@ namespace mine.core.Domain.Customers
         public static string ImpersonatedCustomerId { get { return "ImpersonatedCustomerId"; } }
         public static string LanguageAutomaticallyDetected { get { return "LanguageAutomaticallyDetected"; } }
         public static string LanguageId { get { return "LanguageId"; } }
+        public static string TimeZoneId { get { return "TimeZoneId"; } }
     }
 }
