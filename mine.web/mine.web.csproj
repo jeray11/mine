@@ -244,6 +244,7 @@
     <Content Include="Views\Shared\_ColumnsOne.cshtml" />
     <Content Include="Views\Topic\TopicBlock.cshtml" />
     <Content Include="Views\Boards\_ForumHeader.cshtml" />
+    <Content Include="Views\Boards\_SearchBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\" />

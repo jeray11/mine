@@ -7,6 +7,7 @@ using mine.core.Configuration;
 using mine.core.Caching;
 using mine.core.Data;
 using mine.core;
+using mine.services.Events;
 
 namespace mine.services.Configuration
 {
@@ -16,14 +17,19 @@ namespace mine.services.Configuration
         /// Key for caching
         /// </summary>
         private const string SETTINGS_ALL_KEY = "Nop.setting.all";
-
+        /// <summary>
+        /// Key pattern to clear cache
+        /// </summary>
+        private const string SETTINGS_PATTERN_KEY = "Nop.setting.";
         private readonly ICacheManager _cacheManager;
         private readonly IRepository<Setting> _settingRepository;
+        private readonly IEventPublisher _eventPublisher;
 
-        public SettingService(ICacheManager cacheManager, IRepository<Setting> settingRepository)
+        public SettingService(ICacheManager cacheManager, IRepository<Setting> settingRepository, IEventPublisher eventPublisher)
         {
             this._cacheManager = cacheManager;
             this._settingRepository = settingRepository;
+            this._eventPublisher = eventPublisher;
         }
         public T LoadSetting<T>(int storeId = 0) where T : ISettings, new()
         {
@@ -153,14 +159,115 @@ namespace mine.services.Configuration
             List<Setting> list = new List<Setting>();
             foreach (var prop in propinfos)
             {
-                Setting setting=new Setting{
-                    Name = string.Format("{0}.{1}", typename, prop.Name),
-                     StoreId=storeId,
-                     Value=Convert.ToString(prop.GetValue(settings))
-                };
-                list.Add(setting);
+                // get properties we can read and write to
+                if (!prop.CanRead || !prop.CanWrite)
+                    continue;
+                if (!CommonHelper.GetMineCustomTypeConverter(prop.PropertyType).CanConvertFrom(typeof(string)))
+                    continue;
+                string key = string.Format("{0}.{1}", typename, prop.Name);
+                var value = prop.GetValue(settings);
+                if (value != null)
+                    SetSetting(key, value, storeId, false);
+                else
+                    SetSetting(key, "", storeId, false);
             }
-            
+            //and now clear cache
+            ClearCache();
+        }
+        /// <summary>
+        /// Set setting value
+        /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <param name="key">Key</param>
+        /// <param name="value">Value</param>
+        /// <param name="storeId">Store identifier</param>
+        /// <param name="clearCache">A value indicating whether to clear cache after setting update</param>
+        public virtual void SetSetting<T>(string key, T value, int storeId = 0, bool clearCache = true)
+        {
+            if (key == null)
+                throw new ArgumentNullException("key");
+            key = key.Trim().ToLowerInvariant();
+            string valueStr = CommonHelper.GetMineCustomTypeConverter(typeof(T)).ConvertToInvariantString(value);
+
+            var allSettings = GetAllSettingsCached();
+            var settingForCaching = allSettings.ContainsKey(key) ?
+                allSettings[key].FirstOrDefault(x => x.StoreId == storeId) : null;
+            if (settingForCaching != null)
+            {
+                //update
+                var setting = GetSettingById(settingForCaching.Id);
+                setting.Value = valueStr;
+                UpdateSetting(setting, clearCache);
+            }
+            else
+            {
+                //insert
+                var setting = new Setting
+                {
+                    Name = key,
+                    Value = valueStr,
+                    StoreId = storeId
+                };
+                InsertSetting(setting, clearCache);
+            }
+        }
+
+        /// <summary>
+        /// Gets a setting by identifier
+        /// </summary>
+        /// <param name="settingId">Setting identifier</param>
+        /// <returns>Setting</returns>
+        public virtual Setting GetSettingById(int settingId)
+        {
+            if (settingId == 0)
+                return null;
+
+            return _settingRepository.GetById(settingId);
+        }
+        /// <summary>
+        /// Updates a setting
+        /// </summary>
+        /// <param name="setting">Setting</param>
+        /// <param name="clearCache">A value indicating whether to clear cache after setting update</param>
+        public virtual void UpdateSetting(Setting setting, bool clearCache = true)
+        {
+            if (setting == null)
+                throw new ArgumentNullException("setting");
+
+            _settingRepository.Update(setting);
+
+            //cache
+            if (clearCache)
+                _cacheManager.RemoveByPattern(SETTINGS_PATTERN_KEY);
+
+            //event notification
+            _eventPublisher.EntityUpdated(setting);
+        }
+        /// <summary>
+        /// Adds a setting
+        /// </summary>
+        /// <param name="setting">Setting</param>
+        /// <param name="clearCache">A value indicating whether to clear cache after setting update</param>
+        public virtual void InsertSetting(Setting setting, bool clearCache = true)
+        {
+            if (setting == null)
+                throw new ArgumentNullException("setting");
+
+            _settingRepository.Insert(setting);
+
+            //cache
+            if (clearCache)
+                _cacheManager.RemoveByPattern(SETTINGS_PATTERN_KEY);
+
+            //event notification
+            _eventPublisher.EntityInserted(setting);
+        }
+        /// <summary>
+        /// Clear cache
+        /// </summary>
+        public virtual void ClearCache()
+        {
+            _cacheManager.RemoveByPattern(SETTINGS_PATTERN_KEY);
         }
     }
 }
