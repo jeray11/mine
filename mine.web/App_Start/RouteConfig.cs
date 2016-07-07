@@ -22,8 +22,8 @@ namespace mine.web
 
             routes.MapRoute(
                name: "Default",
-               url: "{lang}/{controller}/{action}/{id}",
-               defaults: new { controller = "Boards", action = "Index", id = UrlParameter.Optional,lang=UrlParameter.Optional },
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Boards", action = "Index", id = UrlParameter.Optional},
                namespaces: new[] { "mine.web.Controllers" }
            );
 

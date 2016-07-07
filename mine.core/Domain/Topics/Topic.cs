@@ -1,4 +1,5 @@
 ﻿using mine.core.Domain.Localization;
+using mine.core.Domain.Seo;
 using mine.core.Domain.Stores;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace mine.core.Domain.Topics
 {
-    public class Topic : BaseEntity, IStoreMappingSupported, ILocalizedEntity
+    public class Topic : BaseEntity, IStoreMappingSupported, ILocalizedEntity, ISlugSupported
     {
         /// <summary>
         /// Gets or sets the name

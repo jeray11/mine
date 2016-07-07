@@ -273,5 +273,63 @@ namespace mine.core
             path = path.Replace("~/", "").TrimStart('/').Replace('/', '\\');
             return Path.Combine(baseDirectory, path);
         }
+
+
+        public bool IsStaticResource(HttpRequest request)
+        {
+            if (request == null)
+                throw new ArgumentNullException("request");
+
+            string path = request.Path;
+            string extension = VirtualPathUtility.GetExtension(path);
+
+            if (extension == null) return false;
+
+            switch (extension.ToLower())
+            {
+                case ".axd":
+                case ".ashx":
+                case ".bmp":
+                case ".css":
+                case ".gif":
+                case ".htm":
+                case ".html":
+                case ".ico":
+                case ".jpeg":
+                case ".jpg":
+                case ".js":
+                case ".png":
+                case ".rar":
+                case ".zip":
+                    return true;
+            }
+
+            return false;
+        }
+
+        public string GetStoreLocation()
+        {
+            bool useSsl = IsCurrentConnectionSecured();
+            return GetStoreLocation(useSsl);
+        }
+        /// <summary>
+        /// Gets store location
+        /// </summary>
+        /// <param name="useSsl">Use SSL</param>
+        /// <returns>Store location</returns>
+        public virtual string GetStoreLocation(bool useSsl)
+        {
+            //return HostingEnvironment.ApplicationVirtualPath;
+
+            string result = GetStoreHost(useSsl);
+            if (result.EndsWith("/"))
+                result = result.Substring(0, result.Length - 1);
+            if (IsRequestAvailable(_httpContext))
+                result = result + _httpContext.Request.ApplicationPath;
+            if (!result.EndsWith("/"))
+                result += "/";
+
+            return result.ToLowerInvariant();
+        }
     }
 }

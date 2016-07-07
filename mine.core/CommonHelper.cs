@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -114,6 +115,19 @@ namespace mine.core
             //if (type == typeof(List<ShippingOption>) || type == typeof(IList<ShippingOption>))
             //    return new ShippingOptionListTypeConverter();
             return TypeDescriptor.GetConverter(type);
+        }
+
+        /// <summary>
+        /// Set Telerik (Kendo UI) culture
+        /// </summary>
+        public static void SetTelerikCulture()
+        {
+            //little hack here
+            //always set culture to 'en-US' (Kendo UI has a bug related to editing decimal values in other cultures). Like currently it's done for admin area in Global.asax.cs
+
+            var culture = new CultureInfo("en-US");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
         }
     }
 }

@@ -113,6 +113,30 @@ namespace mine.web.Controllers
             }
             return View(model);
         }
+        [ChildActionOnly]
+        public ActionResult ActiveDiscussionsSmall()
+        {
+            if (!_forumSettings.ForumsEnabled)
+            {
+                return RedirectToRoute("HomePage");
+            }
+
+            var topics = _forumService.GetActiveTopics(0, 0, _forumSettings.HomePageActiveDiscussionsTopicCount);
+            if (topics.Count == 0)
+                return Content("");
+
+            var model = new ActiveDiscussionsModel();
+            foreach (var topic in topics)
+            {
+                var topicModel = PrepareForumTopicRowModel(topic);
+                model.ForumTopics.Add(topicModel);
+            }
+            model.ViewAllLinkEnabled = true;
+            model.ActiveDiscussionsFeedEnabled = _forumSettings.ActiveDiscussionsFeedEnabled;
+            model.PostsPageSize = _forumSettings.PostsPageSize;
+
+            return PartialView(model);
+        }
 
         //
         // GET: /Boards/Details/5

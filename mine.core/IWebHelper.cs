@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace mine.core
 {
@@ -41,5 +42,10 @@ namespace mine.core
         /// <param name="path">The path to map. E.g. "~/bin"</param>
         /// <returns>The physical path. E.g. "c:\inetpub\wwwroot\bin"</returns>
         string MapPath(string path);
+
+        bool IsStaticResource(HttpRequest request);
+
+        string GetStoreLocation();
+        string GetStoreLocation(bool useSsl);
     }
 }

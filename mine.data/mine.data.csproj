@@ -66,6 +66,7 @@
     <Compile Include="Mapping\Localization\LocalizedPropertyMap.cs" />
     <Compile Include="Mapping\Logging\LogMap.cs" />
     <Compile Include="Mapping\Security\PermissionRecord.cs" />
+    <Compile Include="Mapping\Seo\UrlRecordMap.cs" />
     <Compile Include="Mapping\Stores\StoreMappingMap.cs" />
     <Compile Include="Mapping\Stores\StoreMap.cs" />
     <Compile Include="Mapping\Topics\TopicMap.cs" />
@@ -80,6 +81,10 @@
     <Compile Include="Migrations\201607050746393_add_table_LocalizedProperty.cs" />
     <Compile Include="Migrations\201607050746393_add_table_LocalizedProperty.Designer.cs">
       <DependentUpon>201607050746393_add_table_LocalizedProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607070631109_add_table_UrlRecord.cs" />
+    <Compile Include="Migrations\201607070631109_add_table_UrlRecord.Designer.cs">
+      <DependentUpon>201607070631109_add_table_UrlRecord.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MineContext.cs" />
@@ -106,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607050746393_add_table_LocalizedProperty.resx">
       <DependentUpon>201607050746393_add_table_LocalizedProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607070631109_add_table_UrlRecord.resx">
+      <DependentUpon>201607070631109_add_table_UrlRecord.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

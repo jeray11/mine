@@ -85,6 +85,7 @@
     <Compile Include="Domain\Forums\Forum.cs" />
     <Compile Include="Domain\Forums\ForumGroup.cs" />
     <Compile Include="Domain\Forums\ForumSettings.cs" />
+    <Compile Include="Domain\Forums\ForumTopic.cs" />
     <Compile Include="Domain\Localization\ILocalizedEntity.cs" />
     <Compile Include="Domain\Localization\Language.cs" />
     <Compile Include="Domain\Localization\LocaleStringResource.cs" />
@@ -94,6 +95,8 @@
     <Compile Include="Domain\Logging\LogLevel.cs" />
     <Compile Include="Domain\Media\MediaSettings.cs" />
     <Compile Include="Domain\Security\PermissionRecord.cs" />
+    <Compile Include="Domain\Seo\ISlugSupported.cs" />
+    <Compile Include="Domain\Seo\UrlRecord.cs" />
     <Compile Include="Domain\StoreInformationSettings.cs" />
     <Compile Include="Domain\Stores\IStoreMappingSupported.cs" />
     <Compile Include="Domain\Stores\Store.cs" />
@@ -114,10 +117,12 @@
     <Compile Include="Infrastructure\MineEngine.cs" />
     <Compile Include="Infrastructure\Singleton.cs" />
     <Compile Include="Infrastructure\WebAppTypeFinder.cs" />
+    <Compile Include="IPagedList.cs" />
     <Compile Include="IStoreContext.cs" />
     <Compile Include="IWebHelper.cs" />
     <Compile Include="IWorkContext.cs" />
     <Compile Include="MineVersion.cs" />
+    <Compile Include="PagedList.cs" />
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\IPluginFinder.cs" />
     <Compile Include="Plugins\LoadPluginsMode.cs" />

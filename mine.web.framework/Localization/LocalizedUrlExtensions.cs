@@ -103,5 +103,35 @@ namespace mine.web.framework.Localization
 
             return url.Substring(2, _seoCodeLength);
         }
+        /// <summary>
+        /// Remove language SEO code from URL
+        /// </summary>
+        /// <param name="url">Raw URL</param>
+        /// <param name="applicationPath">Application path</param>
+        /// <returns>Result</returns>
+        public static string RemoveLanguageSeoCodeFromRawUrl(this string url, string applicationPath)
+        {
+            if (string.IsNullOrEmpty(url))
+                return url;
+
+            string result = null;
+            if (applicationPath.IsVirtualDirectory())
+            {
+                //we're in virtual directory. So remove its path
+                url = url.RemoveApplicationPathFromRawUrl(applicationPath);
+            }
+
+            int length = url.Length;
+            if (length < _seoCodeLength + 1)    //too short url
+                result = url;
+            else if (length == 1 + _seoCodeLength)  //url like "/en"
+                result = url.Substring(0, 1);
+            else
+                result = url.Substring(_seoCodeLength + 1); //urls like "/en/" or "/en/somethingelse"
+
+            if (applicationPath.IsVirtualDirectory())
+                result = applicationPath + result;  //add back applciation path
+            return result;
+        }
     }
 }
