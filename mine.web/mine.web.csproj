@@ -182,9 +182,11 @@
     <Compile Include="Infrastructure\ModelCacheEventConsumer.cs" />
     <Compile Include="Infrastructure\RouteProvider.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Boards\ActiveDiscussionsModel.cs" />
     <Compile Include="Models\Boards\BoardsIndexModel.cs" />
     <Compile Include="Models\Boards\ForumGroupModel.cs" />
     <Compile Include="Models\Boards\ForumRowModel.cs" />
+    <Compile Include="Models\Boards\ForumTopicRowModel.cs" />
     <Compile Include="Models\Cms\RenderWidgetModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Topics\TopicModel.cs" />

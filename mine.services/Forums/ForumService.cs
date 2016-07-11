@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using mine.core;
 
 namespace mine.services.Forums
 {
@@ -24,16 +25,29 @@ namespace mine.services.Forums
         private const string FORUM_ALLBYFORUMGROUPID_KEY = "Nop.forum.allbyforumgroupid-{0}";
 
         private ICacheManager _cacheManager;
-        private IRepository<ForumGroup> _forumGroupRepository;
-        private IRepository<Forum> _forumRepository;
+        private readonly IRepository<ForumGroup> _forumGroupRepository;
+        private readonly IRepository<Forum> _forumRepository;
+        private readonly IRepository<ForumTopic> _forumTopicRepository;
         public ForumService(ICacheManager cacheManager, 
             IRepository<ForumGroup> forumGroupRepository,
-            IRepository<Forum> forumRepository)
+            IRepository<Forum> forumRepository,
+            IRepository<ForumTopic> forumTopicRepository)
         {
             this._cacheManager = cacheManager;
             this._forumGroupRepository = forumGroupRepository;
             this._forumRepository = forumRepository;
+            this._forumTopicRepository = forumTopicRepository;
         }
+
+        public IPagedList<ForumTopic> GetActiveTopics(int forumId = 0, int pageIndex = 0, int pageSize = int.MaxValue)
+        {
+            var query1 = from f in _forumTopicRepository.Table
+                         where (forumId == 0 || f.ForumId == forumId) && f.LastPostTime.HasValue
+                         orderby f.LastPostTime descending
+                         select f;
+            return new PagedList<ForumTopic>(query1,pageIndex,pageSize);
+        }
+
         public IList<ForumGroup> GetAllForumGroups()
         {
             string key = string.Format(FORUMGROUP_ALL_KEY);

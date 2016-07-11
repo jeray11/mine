@@ -61,6 +61,7 @@
     <Compile Include="Mapping\Customers\CustomerMap.cs" />
     <Compile Include="Mapping\Forums\ForumGroupMap.cs" />
     <Compile Include="Mapping\Forums\ForumMap.cs" />
+    <Compile Include="Mapping\Forums\ForumTopicMap.cs" />
     <Compile Include="Mapping\Localization\LanguageMap.cs" />
     <Compile Include="Mapping\Localization\LocaleStringResourceMap.cs" />
     <Compile Include="Mapping\Localization\LocalizedPropertyMap.cs" />
@@ -85,6 +86,10 @@
     <Compile Include="Migrations\201607070631109_add_table_UrlRecord.cs" />
     <Compile Include="Migrations\201607070631109_add_table_UrlRecord.Designer.cs">
       <DependentUpon>201607070631109_add_table_UrlRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607111349037_add_table_forumtopic.cs" />
+    <Compile Include="Migrations\201607111349037_add_table_forumtopic.Designer.cs">
+      <DependentUpon>201607111349037_add_table_forumtopic.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MineContext.cs" />
@@ -114,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607070631109_add_table_UrlRecord.resx">
       <DependentUpon>201607070631109_add_table_UrlRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607111349037_add_table_forumtopic.resx">
+      <DependentUpon>201607111349037_add_table_forumtopic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

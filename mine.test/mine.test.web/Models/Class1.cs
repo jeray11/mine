@@ -7,6 +7,9 @@ namespace mine.test.web.Models
 {
     public class Class1
     {
+        public Class1() {
+            test();
+        }
         public Action<int> clusore()
         {
             int b = 0;
