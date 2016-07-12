@@ -28,15 +28,18 @@ namespace mine.services.Forums
         private readonly IRepository<ForumGroup> _forumGroupRepository;
         private readonly IRepository<Forum> _forumRepository;
         private readonly IRepository<ForumTopic> _forumTopicRepository;
+        private readonly IRepository<ForumPost> _forumPostRepository;
         public ForumService(ICacheManager cacheManager, 
             IRepository<ForumGroup> forumGroupRepository,
             IRepository<Forum> forumRepository,
-            IRepository<ForumTopic> forumTopicRepository)
+            IRepository<ForumTopic> forumTopicRepository,
+            IRepository<ForumPost> forumPostRepository)
         {
             this._cacheManager = cacheManager;
             this._forumGroupRepository = forumGroupRepository;
             this._forumRepository = forumRepository;
             this._forumTopicRepository = forumTopicRepository;
+            this._forumPostRepository = forumPostRepository;
         }
 
         public IPagedList<ForumTopic> GetActiveTopics(int forumId = 0, int pageIndex = 0, int pageSize = int.MaxValue)
@@ -70,5 +73,56 @@ namespace mine.services.Forums
                 return query.ToList();
             });
         }
-    }
+        /// <summary>
+        /// Gets all forum posts
+        /// </summary>
+        /// <param name="forumTopicId">The forum topic identifier</param>
+        /// <param name="customerId">The customer identifier</param>
+        /// <param name="keywords">Keywords</param>
+        /// <param name="pageIndex">Page index</param>
+        /// <param name="pageSize">Page size</param>
+        /// <returns>Posts</returns>
+        public IPagedList<ForumPost> GetAllPosts(int forumTopicId = 0, int customerId = 0, string keywords = "", int pageIndex = 0, int pageSize = int.MaxValue)
+        {
+            return GetAllPosts(forumTopicId, customerId, keywords,true, pageIndex, pageSize);
+        }
+        /// <summary>
+        /// Gets all forum posts
+        /// </summary>
+        /// <param name="forumTopicId">The forum topic identifier</param>
+        /// <param name="customerId">The customer identifier</param>
+        /// <param name="keywords">Keywords</param>
+        /// <param name="ascSort">Sort order</param>
+        /// <param name="pageIndex">Page index</param>
+        /// <param name="pageSize">Page size</param>
+        /// <returns>Forum Posts</returns>
+        public virtual IPagedList<ForumPost> GetAllPosts(int forumTopicId = 0, int customerId = 0,
+            string keywords = "", bool ascSort = false,
+            int pageIndex = 0, int pageSize = int.MaxValue)
+        {
+            var query = _forumPostRepository.Table;
+            if (forumTopicId > 0)
+            {
+                query = query.Where(fp => forumTopicId == fp.TopicId);
+            }
+            if (customerId > 0)
+            {
+                query = query.Where(fp => customerId == fp.CustomerId);
+            }
+            if (!String.IsNullOrEmpty(keywords))
+            {
+                query = query.Where(fp => fp.Text.Contains(keywords));
+            }
+            if (ascSort)
+            {
+                query = query.OrderBy(fp => fp.CreatedOnUtc).ThenBy(fp => fp.Id);
+            }
+            else
+            {
+                query = query.OrderByDescending(fp => fp.CreatedOnUtc).ThenBy(fp => fp.Id);
+            }
+            var forumPosts = new PagedList<ForumPost>(query, pageIndex, pageSize);
+            return forumPosts;
+        }
+        }
 }

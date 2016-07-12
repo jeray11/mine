@@ -17,5 +17,13 @@ namespace mine.core.Domain.Forums
         /// Gets or sets the number of items to display for Active Discussions on forums home page
         /// </summary>
         public int HomePageActiveDiscussionsTopicCount { get; set; }
+        /// <summary>
+        /// 每页回复
+        /// </summary>
+        public int PostsPageSize { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool ActiveDiscussionsFeedEnabled { get; set; }
     }
 }

@@ -23,5 +23,31 @@ namespace mine.services.Forums
         /// <returns>Forum Topics</returns>
         IPagedList<ForumTopic> GetActiveTopics(int forumId = 0,
             int pageIndex = 0, int pageSize = int.MaxValue);
+
+        /// <summary>
+        /// Gets all forum posts
+        /// </summary>
+        /// <param name="forumTopicId">The forum topic identifier</param>
+        /// <param name="customerId">The customer identifier</param>
+        /// <param name="keywords">Keywords</param>
+        /// <param name="pageIndex">Page index</param>
+        /// <param name="pageSize">Page size</param>
+        /// <returns>Posts</returns>
+        IPagedList<ForumPost> GetAllPosts(int forumTopicId = 0,
+            int customerId = 0, string keywords = "",
+            int pageIndex = 0, int pageSize = int.MaxValue);
+        /// <summary>
+        /// Gets all forum posts
+        /// </summary>
+        /// <param name="forumTopicId">The forum topic identifier</param>
+        /// <param name="customerId">The customer identifier</param>
+        /// <param name="keywords">Keywords</param>
+        /// <param name="ascSort">Sort order</param>
+        /// <param name="pageIndex">Page index</param>
+        /// <param name="pageSize">Page size</param>
+        /// <returns>Forum Posts</returns>
+        IPagedList<ForumPost> GetAllPosts(int forumTopicId = 0, int customerId = 0,
+            string keywords = "", bool ascSort = false,
+            int pageIndex = 0, int pageSize = int.MaxValue);
     }
 }

@@ -2,6 +2,7 @@
 using mine.core.Domain.Customers;
 using mine.core.Domain.Forums;
 using mine.core.Domain.Media;
+using mine.services.Customers;
 using mine.services.Dictionary;
 using mine.services.Forums;
 using mine.services.Helpers;
