@@ -76,6 +76,7 @@
     <Compile Include="Domain\Configuration\Setting.cs" />
     <Compile Include="Domain\Customers\Customer.cs" />
     <Compile Include="Domain\Customers\CustomerExtensions.cs" />
+    <Compile Include="Domain\Customers\CustomerNameFormat.cs" />
     <Compile Include="Domain\Customers\CustomerRole.cs" />
     <Compile Include="Domain\Customers\CustomerSettings.cs" />
     <Compile Include="Domain\Customers\PasswordFormat.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Domain\Media\MediaSettings.cs" />
     <Compile Include="Domain\Security\PermissionRecord.cs" />
     <Compile Include="Domain\Seo\ISlugSupported.cs" />
+    <Compile Include="Domain\Seo\SeoSettings.cs" />
     <Compile Include="Domain\Seo\UrlRecord.cs" />
     <Compile Include="Domain\StoreInformationSettings.cs" />
     <Compile Include="Domain\Stores\IStoreMappingSupported.cs" />

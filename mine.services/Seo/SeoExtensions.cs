@@ -39,6 +39,26 @@ namespace mine.services.Seo
             return "";
         }
         /// <summary>
+        /// Gets ForumTopic SE (search engine) name
+        /// </summary>
+        /// <param name="forumTopic">ForumTopic</param>
+        /// <returns>ForumTopic SE (search engine) name</returns>
+        public static string GetSeName(this ForumTopic forumTopic)
+        {
+            if (forumTopic == null)
+                throw new ArgumentNullException("forumTopic");
+            string seName = GetSeName(forumTopic.Subject);
+
+            // Trim SE name to avoid URLs that are too long
+            var maxLength = 100;
+            if (seName.Length > maxLength)
+            {
+                seName = seName.Substring(0, maxLength);
+            }
+
+            return seName;
+        }
+        /// <summary>
         /// Gets Forum SE (search engine) name
         /// </summary>
         /// <param name="forum">Forum</param>

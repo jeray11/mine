@@ -138,6 +138,31 @@ namespace mine.web.Controllers
             return PartialView(model);
         }
 
+        [NonAction]
+        protected virtual ForumTopicRowModel PrepareForumTopicRowModel(ForumTopic topic)
+        {
+            var topicModel = new ForumTopicRowModel
+            {
+                Id = topic.Id,
+                Subject = topic.Subject,
+                SeName = topic.GetSeName(),
+                LastPostId = topic.LastPostId,
+                NumPosts = topic.NumPosts,
+                Views = topic.Views,
+                NumReplies = topic.NumReplies,
+                ForumTopicType = topic.ForumTopicType,
+                CustomerId = topic.CustomerId,
+                AllowViewingProfiles = _customerSettings.AllowViewingProfiles,
+                CustomerName = topic.Customer.FormatUserName(),
+                IsCustomerGuest = topic.Customer.IsGuest()
+            };
+
+            var forumPosts = _forumService.GetAllPosts(topic.Id, 0, string.Empty, 1, _forumSettings.PostsPageSize);
+            topicModel.TotalPostPages = forumPosts.TotalPages;
+
+            return topicModel;
+        }
+
         //
         // GET: /Boards/Details/5
         public ActionResult Details(int id)

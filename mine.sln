@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mine.test", "mine.test", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mine.test.web", "mine.test\mine.test.web\mine.test.web.csproj", "{659887C4-014B-4583-B0E5-6F27F3046982}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mine.test.console", "mine.test\mine.test.console\mine.test.console.csproj", "{695A3F16-E97D-44F5-9D6D-165B43E1E31B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,11 +49,16 @@ Global
 		{659887C4-014B-4583-B0E5-6F27F3046982}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{659887C4-014B-4583-B0E5-6F27F3046982}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{659887C4-014B-4583-B0E5-6F27F3046982}.Release|Any CPU.Build.0 = Release|Any CPU
+		{695A3F16-E97D-44F5-9D6D-165B43E1E31B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{695A3F16-E97D-44F5-9D6D-165B43E1E31B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{695A3F16-E97D-44F5-9D6D-165B43E1E31B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{695A3F16-E97D-44F5-9D6D-165B43E1E31B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{659887C4-014B-4583-B0E5-6F27F3046982} = {614004E1-BD7C-42AF-8677-3E91DE35E87A}
+		{695A3F16-E97D-44F5-9D6D-165B43E1E31B} = {614004E1-BD7C-42AF-8677-3E91DE35E87A}
 	EndGlobalSection
 EndGlobal
