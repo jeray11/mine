@@ -14,10 +14,10 @@ namespace mine.services.Helpers
     public class DateTimeHelper:IDateTimeHelper
     {
         private readonly DateTimeSettings _dateTimeSettings;
-        private readonly GenericAttributeService _genericAttributeService;
+        private readonly IGenericAttributeService _genericAttributeService;
         private readonly IWorkContext _workContext;
         private readonly ISettingService _settingService;
-        public DateTimeHelper(DateTimeSettings dateTimeSettings,GenericAttributeService genericAttributeService,IWorkContext workContext,ISettingService settingService) 
+        public DateTimeHelper(DateTimeSettings dateTimeSettings,IGenericAttributeService genericAttributeService,IWorkContext workContext,ISettingService settingService) 
         {
             this._dateTimeSettings = dateTimeSettings;
             this._genericAttributeService = genericAttributeService;

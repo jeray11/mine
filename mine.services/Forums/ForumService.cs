@@ -124,5 +124,13 @@ namespace mine.services.Forums
             var forumPosts = new PagedList<ForumPost>(query, pageIndex, pageSize);
             return forumPosts;
         }
+
+
+        public ForumPost GetPostById(int forumPostId)
+        {
+            if (forumPostId == 0)
+                return null;
+           return _forumPostRepository.GetById(forumPostId);
         }
+    }
 }

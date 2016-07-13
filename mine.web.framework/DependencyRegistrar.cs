@@ -22,7 +22,9 @@ using mine.services.Helpers;
 using mine.services.Localization;
 using mine.services.Logging;
 using mine.services.Media;
+using mine.services.Seo;
 using mine.services.Stores;
+using mine.services.Topics;
 using mine.web.framework.Mvc;
 using System;
 using System.Collections.Generic;
@@ -71,6 +73,8 @@ namespace mine.web.framework
             builder.RegisterType<WebHelper>().As<IWebHelper>().InstancePerLifetimeScope();
             //user agent helper
             builder.RegisterType<UserAgentHelper>().As<IUserAgentHelper>().InstancePerLifetimeScope();//HTTP context and other related stuff
+            //datetime helper
+            builder.RegisterType<DateTimeHelper>().As<IDateTimeHelper>().InstancePerLifetimeScope();
             //pluginfinder
             builder.RegisterType<PluginFinder>().As<IPluginFinder>().InstancePerLifetimeScope();
 
@@ -98,12 +102,14 @@ namespace mine.web.framework
                  .WithParameter(ResolvedParameter.ForNamed<ICacheManager>("mine_cache_static"))
                  .InstancePerLifetimeScope();
             builder.RegisterSource(new SettingsSource());
-            builder.RegisterType<DateTimeHelper>().As<IDateTimeHelper>().InstancePerLifetimeScope();
             builder.RegisterType<StoreService>().As<IStoreService>().InstancePerLifetimeScope();
             builder.RegisterType<DefaultLogger>().As<ILogger>().InstancePerLifetimeScope();
             builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
             builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
             builder.RegisterType<SubscriptionService>().As<ISubscriptionService>().InstancePerLifetimeScope();
+            builder.RegisterType<TopicService>().As<ITopicService>().InstancePerLifetimeScope();
+            builder.RegisterType<LocalizedEntityService>().As<ILocalizedEntityService>().InstancePerLifetimeScope();
+            builder.RegisterType<UrlRecordService>().As<IUrlRecordService>().InstancePerLifetimeScope();
             //pass MemoryCacheManager as cacheManager (cache settings between requests)
             builder.RegisterType<StoreMappingService>().As<IStoreMappingService>()
                .WithParameter(ResolvedParameter.ForNamed<ICacheManager>("mine_cache_static"))

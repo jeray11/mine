@@ -49,5 +49,11 @@ namespace mine.services.Forums
         IPagedList<ForumPost> GetAllPosts(int forumTopicId = 0, int customerId = 0,
             string keywords = "", bool ascSort = false,
             int pageIndex = 0, int pageSize = int.MaxValue);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="forumPostId"></param>
+        /// <returns></returns>
+        ForumPost GetPostById(int forumPostId);
     }
 }

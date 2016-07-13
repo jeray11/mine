@@ -81,6 +81,7 @@
     <Compile Include="Events\IEventPublisher.cs" />
     <Compile Include="Events\ISubscriptionService.cs" />
     <Compile Include="Events\SubscriptionService.cs" />
+    <Compile Include="Forums\ForumExtensions.cs" />
     <Compile Include="Forums\ForumService.cs" />
     <Compile Include="Forums\IForumService.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />

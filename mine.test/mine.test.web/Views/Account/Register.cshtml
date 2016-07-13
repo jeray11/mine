@@ -4,10 +4,24 @@
 }
 
 <h2>@ViewBag.Title。</h2>
-
+<script type="text/javascript">
+    function testajax(){
+        var token=$('@Html.AntiForgeryToken()').val();
+        $.ajax({
+            url: '@Url.Action("Register", "Account", null)',
+            type: 'post',
+            data: { "__RequestVerificationToken": token, UserName: "mjtest1", Password: "mjtest1", ConfirmPassword: "mjtest1" },
+            success: function (){
+                alert("成功");
+            },
+            error: function () { alert("失败"); }
+        });
+    }
+</script>
+<a href="#" onclick="testajax();">测试ajax</a>
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    @Html.AntiForgeryToken()
+    @*@Html.AntiForgeryToken()*@
     <h4>创建新帐户。</h4>
     <hr />
     @Html.ValidationSummary()

@@ -25,5 +25,13 @@ namespace mine.core.Domain.Forums
         /// 
         /// </summary>
         public bool ActiveDiscussionsFeedEnabled { get; set; }
+        /// <summary>
+        /// Gets or sets the maximum length for stripped forum topic names
+        /// </summary>
+        public int StrippedTopicMaxLength { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool RelativeDateTimeFormattingEnabled { get; set; }
     }
 }

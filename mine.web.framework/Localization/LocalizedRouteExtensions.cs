@@ -10,6 +10,10 @@ namespace mine.web.framework.Localization
 {
     public static class LocalizedRouteExtensions
     {
+        public static Route MapLocalizedRoute(this RouteCollection routes, string name, string url, object defaults, string[] namespaces)
+        {
+            return MapLocalizedRoute(routes, name, url, defaults, null /* constraints */, namespaces);
+        }
         public static Route MapLocalizedRoute(this RouteCollection routes, string name, string url, object defaults, object constraints, string[] namespaces)
         {
             if (routes == null)

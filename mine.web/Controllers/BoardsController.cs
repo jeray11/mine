@@ -1,4 +1,5 @@
 ﻿using mine.core;
+using mine.web.framework;
 using mine.core.Domain.Customers;
 using mine.core.Domain.Forums;
 using mine.core.Domain.Media;
@@ -163,7 +164,30 @@ namespace mine.web.Controllers
 
             return topicModel;
         }
-
+        [ChildActionOnly]
+        public ActionResult LastPost(int forumPostId, bool showTopic)
+        {
+            var post = _forumService.GetPostById(forumPostId);
+            var model = new LastPostModel();
+            if (post != null)
+            {
+                model.Id = post.Id;
+                model.ForumTopicId = post.TopicId;
+                model.ForumTopicSeName = post.ForumTopic.GetSeName();
+                model.ForumTopicSubject = post.ForumTopic.StripTopicSubject();
+                model.CustomerId = post.CustomerId;
+                model.AllowViewingProfiles = _customerSettings.AllowViewingProfiles;
+                model.CustomerName = post.Customer.FormatUserName();
+                model.IsCustomerGuest = post.Customer.IsGuest();
+                //created on string
+                if (_forumSettings.RelativeDateTimeFormattingEnabled)
+                    model.PostCreatedOnStr = post.CreatedOnUtc.RelativeFormat(true, "f");
+                else
+                    model.PostCreatedOnStr = _dateTimeHelper.ConvertToUserTime(post.CreatedOnUtc, DateTimeKind.Utc).ToString("f");
+            }
+            model.ShowTopic = showTopic;
+            return PartialView(model);
+        }
         //
         // GET: /Boards/Details/5
         public ActionResult Details(int id)

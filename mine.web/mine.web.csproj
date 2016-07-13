@@ -187,6 +187,7 @@
     <Compile Include="Models\Boards\ForumGroupModel.cs" />
     <Compile Include="Models\Boards\ForumRowModel.cs" />
     <Compile Include="Models\Boards\ForumTopicRowModel.cs" />
+    <Compile Include="Models\Boards\LastPostModel.cs" />
     <Compile Include="Models\Cms\RenderWidgetModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Topics\TopicModel.cs" />
@@ -247,6 +248,8 @@
     <Content Include="Views\Topic\TopicBlock.cshtml" />
     <Content Include="Views\Boards\_ForumHeader.cshtml" />
     <Content Include="Views\Boards\_SearchBox.cshtml" />
+    <Content Include="Views\Boards\_ForumGroup.cshtml" />
+    <Content Include="Views\Boards\LastPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\" />
