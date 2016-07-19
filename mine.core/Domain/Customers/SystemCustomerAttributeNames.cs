@@ -14,5 +14,6 @@ namespace mine.core.Domain.Customers
         public static string TimeZoneId { get { return "TimeZoneId"; } }
         public static string FirstName { get { return "FirstName"; } }
         public static string LastName { get { return "LastName"; } }
+        public static string WorkingThemeName { get { return "WorkingThemeName"; } }
     }
 }

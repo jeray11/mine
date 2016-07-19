@@ -14,9 +14,7 @@ namespace mine.core
         private readonly int _totalPages;
         public PagedList(IQueryable<T> source, int pageIndex, int pageSize)
         {
-            if (pageIndex <= 0)
-                throw new ArgumentOutOfRangeException("pageIndex必须大于0");
-            if (PageSize <= 0)
+            if (pageSize <= 0)
                 throw new ArgumentOutOfRangeException("pageSize必须大于0");
             this._totalCount = source.Count();
             this._pageIndex = pageIndex;

@@ -1,0 +1,32 @@
+﻿@using mine.core;
+@using mine.core.Infrastructure
+@using mine.web.framework.Themes
+@{
+    var supportRtl = EngineContext.Current.Resolve<IWorkContext>().WorkingLanguage.Rtl;
+    var themeName = EngineContext.Current.Resolve<IThemeContext>().WorkingThemeName;
+
+    //add browser specific CSS files
+    var browser = Request.Browser;
+    if (browser.Browser == "IE" && browser.MajorVersion == 8)
+    {
+        Styles.Render(string.Format("~/Themes/{0}/Content/css/ie8.css", themeName));
+    }
+    //add main CSS file
+    if (supportRtl)
+    {
+        Styles.Render(string.Format("~/Themes/{0}/Content/css/styles.rtl.css", themeName));
+    }
+    else
+    {
+        Styles.Render(string.Format("~/Themes/{0}/Content/css/styles.css", themeName));
+    }
+
+    //add jQuery UI css file
+    Styles.Render("~/Content/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css");
+
+    if (browser.Browser == "IE" && browser.MajorVersion == 8)
+    {
+        Scripts.Render("~/Scripts/selectivizr.min.js");
+        Scripts.Render("~/Scripts/respond.min.js");
+    }
+}

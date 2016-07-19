@@ -17,6 +17,7 @@
     {
         string.Format("<meta http-equiv=\"X-UA-Compatible\" content=\"{0}\" />", commonSettings.XuaCompatibleValue);
     }
+    @Html.Partial("Head")
      @Html.Widget("head_html_tag")
     @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryval", "~/bundles/modernizr", "~/bundles/bootstrap")
     @Styles.Render("~/Content/css")
