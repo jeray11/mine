@@ -1,8 +1,18 @@
 ﻿@{
     Layout = "~/Views/Shared/_Root.Head.cshtml";
 }
-@if (IsSectionDefined("Breadcrumb"))
-{
-    @RenderSection("Breadcrumb")
-}
-@RenderBody()
+<div class="master-wrapper-page">
+    @Html.Partial("Header")
+    <div class="master-wrapper-content">
+        @Html.Widget("content_before")
+
+        @if (IsSectionDefined("Breadcrumb"))
+        {
+            @RenderSection("Breadcrumb")
+        }
+        <div class="master-column-wrapper">
+            @RenderBody()
+        </div>
+        @Html.Widget("content_after")
+    </div>
+</div>

@@ -1,5 +1,6 @@
 ﻿using mine.core;
 using mine.core.Infrastructure;
+using mine.web.framework.Themes;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -18,6 +19,10 @@ namespace mine.web
         {
             //initialize engine context
             EngineContext.Initialize(false);
+            //remove all view engines
+            ViewEngines.Engines.Clear();
+            //except the themeable razor view engine we use
+            ViewEngines.Engines.Add(new ThemeableRazorViewEngine());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

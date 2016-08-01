@@ -9,24 +9,24 @@
     var browser = Request.Browser;
     if (browser.Browser == "IE" && browser.MajorVersion == 8)
     {
-        Styles.Render(string.Format("~/Themes/{0}/Content/css/ie8.css", themeName));
+        <link href='~/Themes/@themeName/Content/css/ie8.css' rel='stylesheet' type='text/css' />
     }
     //add main CSS file
     if (supportRtl)
     {
-        Styles.Render(string.Format("~/Themes/{0}/Content/css/styles.rtl.css", themeName));
+        <link href='~/Themes/@themeName/Content/css/styles.rtl.css' rel='stylesheet' type='text/css' />
     }
     else
     {
-        Styles.Render(string.Format("~/Themes/{0}/Content/css/styles.css", themeName));
+        <link href='~/Themes/@themeName/Content/css/styles.css' rel='stylesheet' type='text/css' />
     }
 
     //add jQuery UI css file
-    Styles.Render("~/Content/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css");
+    <link href='~/Content/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css' rel='stylesheet' type='text/css' />;
 
     if (browser.Browser == "IE" && browser.MajorVersion == 8)
     {
-        Scripts.Render("~/Scripts/selectivizr.min.js");
-        Scripts.Render("~/Scripts/respond.min.js");
+        <script type="text/javascript" src="~/Scripts/selectivizr.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/respond.min.js"></script>
     }
 }

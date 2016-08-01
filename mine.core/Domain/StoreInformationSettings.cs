@@ -15,5 +15,7 @@ namespace mine.core.Domain
         public bool DisplayMiniProfilerInPublicStore { get; set; }
 
         public bool AllowCustomerToSelectTheme { get; set; }
+
+        public string DefaultStoreTheme { get; set; }
     }
 }

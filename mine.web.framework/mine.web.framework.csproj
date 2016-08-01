@@ -96,7 +96,12 @@
     <Compile Include="Mvc\RoutePublisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Themes\IThemeContext.cs" />
+    <Compile Include="Themes\IThemeProvider.cs" />
+    <Compile Include="Themes\ThemeableRazorViewEngine.cs" />
+    <Compile Include="Themes\ThemeableVirtualPathProviderViewEngine.cs" />
+    <Compile Include="Themes\ThemeConfiguration.cs" />
     <Compile Include="Themes\ThemeContext.cs" />
+    <Compile Include="Themes\ThemeProvider.cs" />
     <Compile Include="ViewEngines\WebViewPage.cs" />
     <Compile Include="WebStoreContext.cs" />
     <Compile Include="WebWorkContext.cs" />

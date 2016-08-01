@@ -25,5 +25,14 @@ namespace mine.web.Infrastructure
         /// {2} : store id
         /// </remarks>
         public const string TOPIC_MODEL_BY_SYSTEMNAME_KEY = "Nop.pres.topic.details.bysystemname-{0}-{1}-{2}";
+        /// <summary>
+        /// Key for available currencies
+        /// </summary>
+        /// <remarks>
+        /// {0} : language ID
+        /// {1} : current store ID
+        /// </remarks>
+        public const string AVAILABLE_CURRENCIES_MODEL_KEY = "Nop.pres.currencies.all-{0}-{1}";
+        public const string AVAILABLE_CURRENCIES_PATTERN_KEY = "Nop.pres.currencies";
     }
 }

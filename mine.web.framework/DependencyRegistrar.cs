@@ -26,6 +26,7 @@ using mine.services.Seo;
 using mine.services.Stores;
 using mine.services.Topics;
 using mine.web.framework.Mvc;
+using mine.web.framework.Themes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,7 +86,10 @@ namespace mine.web.framework
             builder.RegisterType<WebWorkContext>().As<IWorkContext>().InstancePerLifetimeScope();
             //store context
             builder.RegisterType<WebStoreContext>().As<IStoreContext>().InstancePerLifetimeScope();
-
+            // theme context
+            builder.RegisterType<ThemeContext>().As<IThemeContext>().InstancePerLifetimeScope();
+            //theme provider
+            builder.RegisterType<ThemeProvider>().As<IThemeProvider>().InstancePerLifetimeScope();
             //cache manager
             builder.RegisterType<MemoryCacheManager>().As<ICacheManager>().Named<ICacheManager>("mine_cache_static").SingleInstance();
             builder.RegisterType<PerRequestCacheManager>().As<ICacheManager>().Named<ICacheManager>("nop_cache_per_request").InstancePerLifetimeScope();
