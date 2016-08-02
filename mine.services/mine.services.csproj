@@ -75,6 +75,8 @@
     <Compile Include="Customers\ICustomerService.cs" />
     <Compile Include="Dictionary\CountryService.cs" />
     <Compile Include="Dictionary\ICountryService.cs" />
+    <Compile Include="Directory\CurrencyService.cs" />
+    <Compile Include="Directory\ICurrencyService.cs" />
     <Compile Include="Events\EventPublisher.cs" />
     <Compile Include="Events\EventPublisherExtensions.cs" />
     <Compile Include="Events\IConsumer.cs" />

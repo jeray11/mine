@@ -11,15 +11,24 @@ namespace mine.test.console
     {
         static void Main(string[] args)
         {
-          var converter=  TypeDescriptor.GetConverter(typeof(CustomerType));
-         var obj= converter.ConvertFromInvariantString("1");
-         CustomerType type = (CustomerType)obj;
+            var converter = TypeDescriptor.GetConverter(typeof(CustomerType));
+            var obj = converter.ConvertFromInvariantString("1");
+            CustomerType type = (CustomerType)obj;
         }
     }
 
-    public enum CustomerType 
+    public enum CustomerType
     {
-        Guest=1,
-        Student=2
+        Guest = 1,
+        Student = 2
+    }
+
+    public class student
+    {
+        public const string name = "";
+        public readonly string age = "";
+        public void add() {
+            
+        }
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="Mapping\Configuration\SettingMap.cs" />
     <Compile Include="Mapping\Customers\CustomerRoleMap.cs" />
     <Compile Include="Mapping\Customers\CustomerMap.cs" />
+    <Compile Include="Mapping\Directory\CurrencyMap.cs" />
     <Compile Include="Mapping\Forums\ForumGroupMap.cs" />
     <Compile Include="Mapping\Forums\ForumMap.cs" />
     <Compile Include="Mapping\Forums\ForumPostMap.cs" />
@@ -96,6 +97,10 @@
     <Compile Include="Migrations\201607121430497_add_table_forumspost.Designer.cs">
       <DependentUpon>201607121430497_add_table_forumspost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608021446294_add_table_currency.cs" />
+    <Compile Include="Migrations\201608021446294_add_table_currency.Designer.cs">
+      <DependentUpon>201608021446294_add_table_currency.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MineContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607121430497_add_table_forumspost.resx">
       <DependentUpon>201607121430497_add_table_forumspost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608021446294_add_table_currency.resx">
+      <DependentUpon>201608021446294_add_table_currency.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
