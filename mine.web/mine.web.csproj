@@ -190,6 +190,7 @@
     <Compile Include="Models\Boards\ForumTopicRowModel.cs" />
     <Compile Include="Models\Boards\LastPostModel.cs" />
     <Compile Include="Models\Cms\RenderWidgetModel.cs" />
+    <Compile Include="Models\Common\CurrencyModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Topics\TopicModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
