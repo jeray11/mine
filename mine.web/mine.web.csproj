@@ -191,6 +191,7 @@
     <Compile Include="Models\Boards\LastPostModel.cs" />
     <Compile Include="Models\Cms\RenderWidgetModel.cs" />
     <Compile Include="Models\Common\CurrencyModel.cs" />
+    <Compile Include="Models\Common\CurrencySelectorModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Topics\TopicModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -321,10 +322,10 @@
     <Content Include="Themes\DefaultClean\Views\Shared\Head.cshtml" />
     <Content Include="Themes\DefaultClean\Views\Web.config" />
     <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Common\CurrencySelector.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\" />
-    <Folder Include="Views\Common\" />
     <Folder Include="Views\Widget\" />
   </ItemGroup>
   <ItemGroup>

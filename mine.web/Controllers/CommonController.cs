@@ -51,7 +51,7 @@ namespace mine.web.Controllers
 
                 return query;
             });
-            return View();
+            return View(availableCurrencies);
         }
 	}
 }
