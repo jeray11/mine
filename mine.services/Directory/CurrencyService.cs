@@ -22,6 +22,13 @@ namespace mine.services.Directory
         /// {0} : show hidden records?
         /// </remarks>
         private const string CURRENCIES_ALL_KEY = "Nop.currency.all-{0}";
+        /// <summary>
+        /// Key for caching
+        /// </summary>
+        /// <remarks>
+        /// {0} : currency ID
+        /// </remarks>
+        private const string CURRENCIES_BY_ID_KEY = "Nop.currency.id-{0}";
         public CurrencyService(ICacheManager  cacheManager,IRepository<Currency> repository,IStoreMappingService storeMappingService)
         {
             this._cacheManager = cacheManager;
@@ -41,6 +48,23 @@ namespace mine.services.Directory
             if (storeId > 0)
                 currencies = currencies.Where(c => _storeMappingService.Authorize(c,storeId)).ToList();
             return currencies;
+        }
+
+        /// <summary>
+        /// 根据ID 获取货币信息
+        /// </summary>
+        /// <param name="customerCurrency"></param>
+        /// <returns></returns>
+        public Currency GetCurrencyById(int customerCurrency)
+        {
+            if (customerCurrency == 0)
+                return null;
+            string key = string.Format(CURRENCIES_BY_ID_KEY, customerCurrency);
+            var currency = _cacheManager.Get(key, () =>
+            {
+                return _repository.GetById(customerCurrency);
+            });
+            return currency;
         }
     }
 }

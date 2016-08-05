@@ -23,6 +23,9 @@ namespace mine.web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            //自定义js
+            bundles.Add(new StyleBundle("~/bundles/customjs").Include("~/Scripts/public.common.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

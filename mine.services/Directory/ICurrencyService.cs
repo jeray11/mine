@@ -16,5 +16,11 @@ namespace mine.services.Directory
         /// <param name="storeId">Load records allowed only in a specified store; pass 0 to load all records</param>
         /// <returns>Currencies</returns>
         IList<Currency> GetAllCurrencies(bool showHidden = false, int storeId = 0);
+        /// <summary>
+        /// 根据ID 获取货币信息
+        /// </summary>
+        /// <param name="customerCurrency"></param>
+        /// <returns></returns>
+        Currency GetCurrencyById(int customerCurrency);
     }
 }

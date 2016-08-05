@@ -6,9 +6,9 @@ using System.Web;
 
 namespace mine.web.Models.Common
 {
-    public class CurrencyModel : BaseMineViewModel
+    public class LanguageModel : BaseMineViewModel
     {
         public string Name { get; set; }
-        public string CurrencySymbol { get; set; }
+        public string FlagImageFileName { get; set; }
     }
 }

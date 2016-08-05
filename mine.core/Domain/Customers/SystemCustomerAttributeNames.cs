@@ -15,5 +15,6 @@ namespace mine.core.Domain.Customers
         public static string FirstName { get { return "FirstName"; } }
         public static string LastName { get { return "LastName"; } }
         public static string WorkingThemeName { get { return "WorkingThemeName"; } }
+        public static string CurrencyId { get { return "CurrencyId"; } }
     }
 }

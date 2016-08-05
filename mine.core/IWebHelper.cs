@@ -47,5 +47,14 @@ namespace mine.core
 
         string GetStoreLocation();
         string GetStoreLocation(bool useSsl);
+
+        /// <summary>
+        /// Modifies query string
+        /// </summary>
+        /// <param name="url">Url to modify</param>
+        /// <param name="queryStringModification">Query string modification</param>
+        /// <param name="anchor">Anchor</param>
+        /// <returns>New url</returns>
+        string ModifyQueryString(string url, string queryStringModification, string anchor);
     }
 }

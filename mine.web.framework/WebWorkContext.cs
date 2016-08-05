@@ -16,6 +16,8 @@ using mine.services.Customers;
 using mine.services.Helpers;
 using mine.services.Authentication;
 using mine.services.Common;
+using mine.core.Domain.Directory;
+using mine.services.Directory;
 
 namespace mine.web.framework
 {
@@ -30,10 +32,13 @@ namespace mine.web.framework
         private readonly IStoreMappingService _storeMappingService;
         private Customer _originalCustomerIfImpersonated;
         private Customer _cachedCustomer;
+        private Currency _cachedCurrency;
         private readonly ICustomerService _customerService;
         private readonly IUserAgentHelper _userAgentHelper;
         private readonly IAuthenticationService _authenticationService;
         private readonly IGenericAttributeService _genericAttributeService;
+        private readonly ICurrencyService _currencyService;
+        private readonly CurrencySettings _currencySettings;
         private readonly IStoreContext _storeContext;
         public WebWorkContext(
             HttpContextBase httpContext, 
@@ -44,6 +49,8 @@ namespace mine.web.framework
             IUserAgentHelper userAgentHelper,
             IAuthenticationService authenticationService,
             IGenericAttributeService genericAttributeService,
+            ICurrencyService currencyService,
+            CurrencySettings currencySettings,
             IStoreContext storeContext)
         {
             this._httpContext = httpContext;
@@ -54,6 +61,8 @@ namespace mine.web.framework
             this._userAgentHelper = userAgentHelper;
             this._authenticationService = authenticationService;
             this._genericAttributeService = genericAttributeService;
+            this._currencyService = currencyService;
+            this._currencySettings = currencySettings;
             this._storeContext = storeContext;
         }
         public Language WorkingLanguage
@@ -284,6 +293,70 @@ namespace mine.web.framework
             }
 
             return null;
+        }
+
+
+        public Currency WorkingCurrency
+        {
+            get
+            {
+                if (_cachedCurrency != null)
+                    return _cachedCurrency;
+                if (this.IsAdmin)
+                {
+                    var primaryStoreCurrency = _currencyService.GetCurrencyById(_currencySettings.PrimaryStoreCurrencyId);
+                    if (primaryStoreCurrency != null)
+                    {
+                        //cache
+                        _cachedCurrency = primaryStoreCurrency;
+                        return primaryStoreCurrency;
+                    }
+                }
+                var allCurrencies = _currencyService.GetAllCurrencies(storeId: _storeContext.CurrentStore.Id);
+                //find a currency previously selected by a customer
+                var currencyId = this.CurrentCustomer.GetAttribute<int>(SystemCustomerAttributeNames.CurrencyId,
+                    _genericAttributeService, _storeContext.CurrentStore.Id);
+                var currency = allCurrencies.FirstOrDefault(x => x.Id == currencyId);
+                if (currency == null)
+                {
+                    //it not found, then let's load the default currency for the current language (if specified)
+                    currencyId = this.WorkingLanguage.DefaultCurrencyId;
+                    currency = allCurrencies.FirstOrDefault(x => x.Id == currencyId);
+                }
+                if (currency == null)
+                {
+                    //it not found, then return the first (filtered by current store) found one
+                    currency = allCurrencies.FirstOrDefault();
+                }
+                if (currency == null)
+                {
+                    //it not specified, then return the first found one
+                    currency = _currencyService.GetAllCurrencies().FirstOrDefault();
+                }
+                //cache
+                _cachedCurrency = currency;
+                return _cachedCurrency;
+                
+            }
+            set 
+            {
+                var currencyId = value != null ? value.Id : 0;
+                _genericAttributeService.SaveAttribute(this.CurrentCustomer,
+                    SystemCustomerAttributeNames.CurrencyId,
+                    currencyId, _storeContext.CurrentStore.Id);
+
+                //reset cache
+                _cachedCurrency = null;
+            }
+        }
+
+        /// <summary>
+        /// Get or set value indicating whether we're in admin area
+        /// </summary>
+        public bool IsAdmin
+        {
+            get;
+            set;
         }
     }
 }

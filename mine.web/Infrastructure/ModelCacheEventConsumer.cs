@@ -34,5 +34,13 @@ namespace mine.web.Infrastructure
         /// </remarks>
         public const string AVAILABLE_CURRENCIES_MODEL_KEY = "Nop.pres.currencies.all-{0}-{1}";
         public const string AVAILABLE_CURRENCIES_PATTERN_KEY = "Nop.pres.currencies";
+        /// <summary>
+        /// Key for available languages
+        /// </summary>
+        /// <remarks>
+        /// {0} : current store ID
+        /// </remarks>
+        public const string AVAILABLE_LANGUAGES_MODEL_KEY = "Nop.pres.languages.all-{0}";
+        public const string AVAILABLE_LANGUAGES_PATTERN_KEY = "Nop.pres.languages";
     }
 }

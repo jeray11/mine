@@ -36,6 +36,12 @@ namespace mine.web.Infrastructure
                             new { controller = "Boards", action = "Topic", slug = UrlParameter.Optional },
                             new { id = @"\d+" },
                             new[] { "mine.web.Controllers" });
+            //change currency (AJAX link)
+            routes.MapLocalizedRoute("ChangeCurrency",
+                            "changecurrency/{customercurrency}",
+                            new { controller = "Common", action = "SetCurrency" },
+                            new { customercurrency = @"\d+" },
+                            new[] { "Nop.Web.Controllers" });
         }
 
         public int Priority

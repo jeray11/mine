@@ -19,8 +19,9 @@
     }
     @Html.Partial("Head")
      @Html.Widget("head_html_tag")
-    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryval", "~/bundles/modernizr", "~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/jqueryval", "~/bundles/modernizr", "~/bundles/bootstrap", "~/bundles/customjs")
     @Styles.Render("~/Content/css")
+    
     @if (displayMiniProfiler)
     {
         @StackExchange.Profiling.MiniProfiler.RenderIncludes()
