@@ -10,6 +10,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using mine.services.Localization;
+using mine.core.Domain.Localization;
+using mine.core.Domain.Forums;
+using mine.services.Forums;
 
 namespace mine.web.Controllers
 {
@@ -20,13 +23,27 @@ namespace mine.web.Controllers
         private readonly IStoreContext _storeContext;
         private readonly ICurrencyService _currencyService;
         private readonly ILanguageService _languageService;
-        public CommonController(ICacheManager cacheManager, IWorkContext workContext, IStoreContext storeContext, ICurrencyService currencyService, ILanguageService languageService)
+        private readonly LocalizationSettings _localizationSettings;
+        private readonly ForumSettings _forumSettings;
+        private readonly IForumService _forumService;
+        public CommonController(
+            ICacheManager cacheManager, 
+            IWorkContext workContext, 
+            IStoreContext storeContext, 
+            ICurrencyService currencyService, 
+            ILanguageService languageService,
+            LocalizationSettings localizationSettings,
+            ForumSettings forumSettings,
+            IForumService forumService)
         {
             this._cacheManager = cacheManager;
             this._workContext = workContext;
             this._storeContext = storeContext;
             this._currencyService = currencyService;
             this._languageService = languageService;
+            this._localizationSettings = localizationSettings;
+            this._forumSettings = forumSettings;
+            this._forumService = forumService;
         }
         //
         // GET: /Common/
@@ -53,9 +70,18 @@ namespace mine.web.Controllers
                         return currencyModel;
                     });
 
-                return query;
+                return query.ToList();
             });
-            return View(availableCurrencies);
+            var model = new CurrencySelectorModel
+            {
+                CurrentCurrencyId = _workContext.WorkingCurrency.Id,
+                AvailableCurrencies = availableCurrencies
+            };
+
+            if (model.AvailableCurrencies.Count == 1)
+                Content("");
+
+            return PartialView(model);
         }
         [ChildActionOnly]
         public ActionResult LanguageSelector()
@@ -71,8 +97,15 @@ namespace mine.web.Controllers
                     }).ToList();
                 return query;
             });
-
-            return PartialView();
+            var selModel = new LanguageSelectorModel
+            {
+                AvailableLanguages = avaliableLanguages,
+                CurrentLanguageId = _workContext.WorkingLanguage.Id,
+                UseImages=_localizationSettings.UseImagesForLanguageSelection
+            };
+            if (selModel.AvailableLanguages.Count == 1)
+                return Content("");
+            return PartialView(selModel);
         }
         public ActionResult SetCurrency(int customerCurrency, string returnUrl = "")
         {
@@ -89,6 +122,31 @@ namespace mine.web.Controllers
                 returnUrl = Url.RouteUrl("HomePage");
 
             return Redirect(returnUrl);
+        }
+
+        public ActionResult HeaderLinks() 
+        {
+            var customer = _workContext.CurrentCustomer;
+
+        }
+
+        [NonAction]
+        protected virtual int GetUnreadPrivateMessages()
+        {
+            var result = 0;
+            var customer = _workContext.CurrentCustomer;
+            if (_forumSettings.AllowPrivateMessages && !customer.IsGuest())
+            {
+                var privateMessages = _forumservice.GetAllPrivateMessages(_storeContext.CurrentStore.Id,
+                    0, customer.Id, false, null, false, string.Empty, 0, 1);
+
+                if (privateMessages.TotalCount > 0)
+                {
+                    result = privateMessages.TotalCount;
+                }
+            }
+
+            return result;
         }
     }
 }

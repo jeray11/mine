@@ -91,6 +91,7 @@
     <Compile Include="Domain\Forums\ForumSettings.cs" />
     <Compile Include="Domain\Forums\ForumTopic.cs" />
     <Compile Include="Domain\Forums\ForumTopicType.cs" />
+    <Compile Include="Domain\Forums\PrivateMessage.cs" />
     <Compile Include="Domain\Localization\ILocalizedEntity.cs" />
     <Compile Include="Domain\Localization\Language.cs" />
     <Compile Include="Domain\Localization\LocaleStringResource.cs" />

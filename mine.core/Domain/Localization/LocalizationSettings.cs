@@ -29,5 +29,9 @@ namespace mine.core.Domain.Localization
         /// A value indicating whether to load all search engine friendly names (slugs) on application startup
         /// </summary>
         public bool LoadAllUrlRecordsOnStartup { get; set; }
+        /// <summary>
+        /// 语言选择的下拉框是否显示图片
+        /// </summary>
+        public bool UseImagesForLanguageSelection { get; set; }
     }
 }

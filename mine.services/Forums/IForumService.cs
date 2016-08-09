@@ -55,5 +55,21 @@ namespace mine.services.Forums
         /// <param name="forumPostId"></param>
         /// <returns></returns>
         ForumPost GetPostById(int forumPostId);
+        /// <summary>
+        /// Gets private messages
+        /// </summary>
+        /// <param name="storeId">The store identifier; pass 0 to load all messages</param>
+        /// <param name="fromCustomerId">The customer identifier who sent the message</param>
+        /// <param name="toCustomerId">The customer identifier who should receive the message</param>
+        /// <param name="isRead">A value indicating whether loaded messages are read. false - to load not read messages only, 1 to load read messages only, null to load all messages</param>
+        /// <param name="isDeletedByAuthor">A value indicating whether loaded messages are deleted by author. false - messages are not deleted by author, null to load all messages</param>
+        /// <param name="isDeletedByRecipient">A value indicating whether loaded messages are deleted by recipient. false - messages are not deleted by recipient, null to load all messages</param>
+        /// <param name="keywords">Keywords</param>
+        /// <param name="pageIndex">Page index</param>
+        /// <param name="pageSize">Page size</param>
+        /// <returns>Private messages</returns>
+        IPagedList<PrivateMessage> GetAllPrivateMessages(int storeId, int fromCustomerId,
+            int toCustomerId, bool? isRead, bool? isDeletedByAuthor, bool? isDeletedByRecipient,
+            string keywords, int pageIndex = 0, int pageSize = int.MaxValue);
     }
 }
