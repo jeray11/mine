@@ -102,6 +102,10 @@
     <Compile Include="Migrations\201608021446294_add_table_currency.Designer.cs">
       <DependentUpon>201608021446294_add_table_currency.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608100814294_add_table_PrivateMessage.cs" />
+    <Compile Include="Migrations\201608100814294_add_table_PrivateMessage.Designer.cs">
+      <DependentUpon>201608100814294_add_table_PrivateMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MineContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608021446294_add_table_currency.resx">
       <DependentUpon>201608021446294_add_table_currency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608100814294_add_table_PrivateMessage.resx">
+      <DependentUpon>201608100814294_add_table_PrivateMessage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

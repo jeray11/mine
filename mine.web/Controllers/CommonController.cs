@@ -12,7 +12,11 @@ using System.Web.Mvc;
 using mine.services.Localization;
 using mine.core.Domain.Localization;
 using mine.core.Domain.Forums;
+using mine.core.Domain.Customers;
 using mine.services.Forums;
+using mine.services;
+using mine.services.Common;
+using mine.services.Security;
 
 namespace mine.web.Controllers
 {
@@ -26,6 +30,10 @@ namespace mine.web.Controllers
         private readonly LocalizationSettings _localizationSettings;
         private readonly ForumSettings _forumSettings;
         private readonly IForumService _forumService;
+        private readonly ILocalizationService _localizationService;
+        private readonly IGenericAttributeService _genericAttributeService;
+        private readonly CustomerSettings _customerSettings;
+        private readonly IPermissionService _permissionService;
         public CommonController(
             ICacheManager cacheManager, 
             IWorkContext workContext, 
@@ -34,7 +42,11 @@ namespace mine.web.Controllers
             ILanguageService languageService,
             LocalizationSettings localizationSettings,
             ForumSettings forumSettings,
-            IForumService forumService)
+            IForumService forumService,
+            ILocalizationService localizationService,
+            IGenericAttributeService genericAttributeService,
+            CustomerSettings customerSettings,
+            IPermissionService permissionService)
         {
             this._cacheManager = cacheManager;
             this._workContext = workContext;
@@ -44,6 +56,10 @@ namespace mine.web.Controllers
             this._localizationSettings = localizationSettings;
             this._forumSettings = forumSettings;
             this._forumService = forumService;
+            this._localizationService = localizationService;
+            this._genericAttributeService = genericAttributeService;
+            this._customerSettings = customerSettings;
+            this._permissionService = permissionService;
         }
         //
         // GET: /Common/
@@ -127,7 +143,31 @@ namespace mine.web.Controllers
         public ActionResult HeaderLinks() 
         {
             var customer = _workContext.CurrentCustomer;
+            var unreadMessageCount = GetUnreadPrivateMessages();
+            var unreadMessage = string.Empty;
+            var alertMessage = string.Empty;
+            if (unreadMessageCount > 0)
+            {
+                unreadMessage = string.Format(_localizationService.GetResource("PrivateMessages.TotalUnread"), unreadMessageCount);
+                //notifications here
+                if (_forumSettings.ShowAlertForPM &&
+                    !customer.GetAttribute<bool>(SystemCustomerAttributeNames.NotifiedAboutNewPrivateMessages, _storeContext.CurrentStore.Id))
+                {
+                    _genericAttributeService.SaveAttribute(customer, SystemCustomerAttributeNames.NotifiedAboutNewPrivateMessages, true, _storeContext.CurrentStore.Id);
+                    alertMessage = string.Format(_localizationService.GetResource("PrivateMessages.YouHaveUnreadPM"), unreadMessageCount);
+                }
+            }
 
+            var vm = new HeaderLinksModel 
+            {
+                IsAuthenticated=customer.IsRegistered(),
+                AllowPrivateMessages = customer.IsRegistered() && _forumSettings.AllowPrivateMessages,
+                AlertMessage = alertMessage,
+                 UnreadPrivateMessages=unreadMessage,
+                CustomerEmailUsername = customer.IsRegistered() ? (_customerSettings.UsernamesEnabled ? customer.Username : customer.Email) : "",
+                ShoppingCartEnabled = _permissionService.Authorize(StandardPermissionProvider.EnableShoppingCart),
+                WishlistEnabled = _permissionService.Authorize(StandardPermissionProvider.EnableWishlist),
+            };
         }
 
         [NonAction]
@@ -137,7 +177,7 @@ namespace mine.web.Controllers
             var customer = _workContext.CurrentCustomer;
             if (_forumSettings.AllowPrivateMessages && !customer.IsGuest())
             {
-                var privateMessages = _forumservice.GetAllPrivateMessages(_storeContext.CurrentStore.Id,
+                var privateMessages = _forumService.GetAllPrivateMessages(_storeContext.CurrentStore.Id,
                     0, customer.Id, false, null, false, string.Empty, 0, 1);
 
                 if (privateMessages.TotalCount > 0)

@@ -29,17 +29,20 @@ namespace mine.services.Forums
         private readonly IRepository<Forum> _forumRepository;
         private readonly IRepository<ForumTopic> _forumTopicRepository;
         private readonly IRepository<ForumPost> _forumPostRepository;
+        private readonly IRepository<PrivateMessage> _forumPrivateMessageRepository;
         public ForumService(ICacheManager cacheManager, 
             IRepository<ForumGroup> forumGroupRepository,
             IRepository<Forum> forumRepository,
             IRepository<ForumTopic> forumTopicRepository,
-            IRepository<ForumPost> forumPostRepository)
+            IRepository<ForumPost> forumPostRepository,
+            IRepository<PrivateMessage> forumPrivateMessageRepository)
         {
             this._cacheManager = cacheManager;
             this._forumGroupRepository = forumGroupRepository;
             this._forumRepository = forumRepository;
             this._forumTopicRepository = forumTopicRepository;
             this._forumPostRepository = forumPostRepository;
+            this._forumPrivateMessageRepository = forumPrivateMessageRepository;
         }
 
         public IPagedList<ForumTopic> GetActiveTopics(int forumId = 0, int pageIndex = 0, int pageSize = int.MaxValue)
@@ -148,7 +151,24 @@ namespace mine.services.Forums
         /// <returns>Private messages</returns>
         public IPagedList<PrivateMessage> GetAllPrivateMessages(int storeId, int fromCustomerId, int toCustomerId, bool? isRead, bool? isDeletedByAuthor, bool? isDeletedByRecipient, string keywords, int pageIndex = 0, int pageSize = int.MaxValue)
         {
-            
+            var query = _forumPrivateMessageRepository.Table;
+            if (storeId > 0)
+                query = query.Where(pm => storeId == pm.StoreId);
+            if(fromCustomerId>0)
+                query = query.Where(pm => fromCustomerId == pm.FromCustomerId);
+            if (toCustomerId > 0)
+                query = query.Where(pm => toCustomerId == pm.ToCustomerId);
+            if (isRead.HasValue)
+                query = query.Where(pm =>isRead.Value== pm.IsRead);
+            if (isDeletedByAuthor.HasValue)
+                query = query.Where(pm => isDeletedByAuthor.Value == pm.IsDeletedByAuthor);
+            if(isDeletedByRecipient.HasValue)
+                query = query.Where(pm => isDeletedByRecipient.Value == pm.IsDeletedByRecipient);
+            if (!string.IsNullOrWhiteSpace(keywords))
+                query = query.Where(pm=>pm.Subject.Contains(keywords)||pm.Text.Contains(keywords));
+            query = query.OrderByDescending(pm => pm.CreatedOnUtc);
+            var privateMessages = new PagedList<PrivateMessage>(query, pageIndex, pageSize);
+            return privateMessages;
         }
     }
 }

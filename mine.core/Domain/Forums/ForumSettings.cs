@@ -33,5 +33,13 @@ namespace mine.core.Domain.Forums
         /// 
         /// </summary>
         public bool RelativeDateTimeFormattingEnabled { get; set; }
+        /// <summary>
+        /// 论坛中 允许私信
+        /// </summary>
+        public bool AllowPrivateMessages { get; set; }
+        /// <summary>
+        /// 是否弹出提示私信
+        /// </summary>
+        public bool ShowAlertForPM { get; set; }
     }
 }
