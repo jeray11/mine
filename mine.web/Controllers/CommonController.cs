@@ -158,7 +158,7 @@ namespace mine.web.Controllers
                 }
             }
 
-            var vm = new HeaderLinksModel 
+            var model = new HeaderLinksModel 
             {
                 IsAuthenticated=customer.IsRegistered(),
                 AllowPrivateMessages = customer.IsRegistered() && _forumSettings.AllowPrivateMessages,
@@ -168,6 +168,35 @@ namespace mine.web.Controllers
                 ShoppingCartEnabled = _permissionService.Authorize(StandardPermissionProvider.EnableShoppingCart),
                 WishlistEnabled = _permissionService.Authorize(StandardPermissionProvider.EnableWishlist),
             };
+            if (customer.HasShoppingCartItems)
+            {
+                //model.ShoppingCartItems = customer.ShoppingCartItems 以后再做
+                //                   .Where(sci => sci.ShoppingCartType == ShoppingCartType.ShoppingCart)
+                //                   .LimitPerStore(_storeContext.CurrentStore.Id)
+                //                   .ToList()
+                //                   .GetTotalProducts();
+                //model.WishlistItems = customer.ShoppingCartItems
+                //    .Where(sci => sci.ShoppingCartType == ShoppingCartType.Wishlist)
+                //    .LimitPerStore(_storeContext.CurrentStore.Id)
+                //    .ToList()
+                //    .GetTotalProducts();
+            }
+            return PartialView(model);
+        }
+
+        public ActionResult SetLanguage(int langid, string returnUrl = "")
+        {
+            var language = _languageService.GetLanguageById(langid);
+            if (language != null && language.Published)
+            {
+                _workContext.WorkingLanguage = language;
+            }
+            //home page
+            if (String.IsNullOrEmpty(returnUrl))
+                returnUrl = Url.RouteUrl("HomePage");
+            //prevent open redirection attack
+            if (!Url.IsLocalUrl(returnUrl))
+                returnUrl = Url.RouteUrl("HomePage");
         }
 
         [NonAction]

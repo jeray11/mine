@@ -16,5 +16,7 @@ namespace mine.services.Localization
         /// <param name="showHidden">A value indicating whether to show hidden records</param>
         /// <returns>Languages</returns>
         IList<Language> GetAllLanguages(bool showHidden = false, int storeId = 0);
+
+        Language GetLanguageById(int langId);
     }
 }

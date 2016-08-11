@@ -20,6 +20,8 @@ namespace mine.services.Localization
         /// </remarks>
         private const string LANGUAGES_ALL_KEY = "Nop.language.all-{0}";
 
+        private const string LANGUAGES_BY_ID_KEY = "Nop.language.id-{0}";
+
        private readonly ICacheManager _cacheManager;
        private readonly IRepository<Language> _repository;
        private readonly IStoreMappingService _storeMappingService;
@@ -48,6 +50,15 @@ namespace mine.services.Localization
                     .ToList();
             }
             return languages;
+        }
+
+
+        public Language GetLanguageById(int langId)
+        {
+            if (langId == 0)
+                return null;
+            string key = string.Format(LANGUAGES_BY_ID_KEY, langId);
+            return _cacheManager.Get(key, () => _repository.GetById(langId));
         }
     }
 }

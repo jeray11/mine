@@ -42,6 +42,12 @@ namespace mine.web.Infrastructure
                             new { controller = "Common", action = "SetCurrency" },
                             new { customercurrency = @"\d+" },
                             new[] { "Nop.Web.Controllers" });
+            //change language (AJAX link)
+            routes.MapLocalizedRoute("ChangeLanguage",
+                            "changelanguage/{langid}",
+                            new { controller = "Common", action = "SetLanguage" },
+                            new { langid = @"\d+" },
+                            new[] { "Nop.Web.Controllers" });
         }
 
         public int Priority

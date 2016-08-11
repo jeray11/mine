@@ -203,6 +203,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\flags\cn.png" />
+    <Content Include="Content\Images\flags\us.png" />
     <Content Include="Content\jquery-ui-themes\smoothness\images\animated-overlay.gif" />
     <Content Include="Content\jquery-ui-themes\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\jquery-ui-themes\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -327,6 +329,7 @@
     <Content Include="Themes\DefaultClean\Views\Web.config" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Common\CurrencySelector.cshtml" />
+    <Content Include="Views\Common\LanguageSelector.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugins\" />
