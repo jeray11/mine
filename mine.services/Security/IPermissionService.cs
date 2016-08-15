@@ -31,13 +31,6 @@ namespace mine.services.Security
         /// <param name="permissionRecordSystemName">Permission record system name</param>
         /// <param name="customer">Customer</param>
         /// <returns>true - authorized; otherwise, false</returns>
-        public virtual bool Authorize(string permissionRecordSystemName, Customer customer);
-        /// <summary>
-        /// Authorize permission
-        /// </summary>
-        /// <param name="permissionRecordSystemName">Permission record system name</param>
-        /// <param name="customerRole">Customer role</param>
-        /// <returns>true - authorized; otherwise, false</returns>
-        protected virtual bool Authorize(string permissionRecordSystemName, CustomerRole customerRole);
+        bool Authorize(string permissionRecordSystemName, Customer customer);
     }
 }

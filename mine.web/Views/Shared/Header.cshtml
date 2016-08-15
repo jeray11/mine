@@ -1,4 +1,16 @@
-﻿<div class="header">
+﻿@using mine.core.Infrastructure
+@using mine.web.framework.Themes
+@using mine.core
+@using mine.services.Localization
+@{
+    //logo path
+    var currentThemeName = EngineContext.Current.Resolve<IThemeContext>().WorkingThemeName;
+    var logoPath = "~/Themes/" + currentThemeName + "/Content/images/logo.png";
+
+    //store name
+    var storeName = EngineContext.Current.Resolve<IStoreContext>().CurrentStore.GetLocalized(x => x.Name);   
+}
+<div class="header">
     @Html.Widget("header")
     <div class="header-upper">
         <div class="header-selectors-wrapper">

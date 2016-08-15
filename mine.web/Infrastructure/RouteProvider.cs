@@ -41,13 +41,48 @@ namespace mine.web.Infrastructure
                             "changecurrency/{customercurrency}",
                             new { controller = "Common", action = "SetCurrency" },
                             new { customercurrency = @"\d+" },
-                            new[] { "Nop.Web.Controllers" });
+                            new[] { "mine.web.Controllers" });
             //change language (AJAX link)
             routes.MapLocalizedRoute("ChangeLanguage",
                             "changelanguage/{langid}",
                             new { controller = "Common", action = "SetLanguage" },
                             new { langid = @"\d+" },
-                            new[] { "Nop.Web.Controllers" });
+                            new[] { "mine.web.Controllers" });
+            //customer account links
+            routes.MapLocalizedRoute("CustomerInfo",
+                            "customer/info",
+                            new { controller = "Customer", action = "Info" },
+                            new[] { "mine.web.Controllers" });
+            //logout
+            routes.MapLocalizedRoute("Logout",
+                            "logout/",
+                            new { controller = "Customer", action = "Logout" },
+                            new[] { "mine.web.Controllers" });
+            //login
+            routes.MapLocalizedRoute("Login",
+                            "login/",
+                            new { controller = "Customer", action = "Login" },
+                            new[] { "mine.web.Controllers" });
+            //register
+            routes.MapLocalizedRoute("Register",
+                            "register/",
+                            new { controller = "Customer", action = "Register" },
+                            new[] { "mine.web.Controllers" });
+            //private messages
+            routes.MapLocalizedRoute("PrivateMessages",
+                            "privatemessages/{tab}",
+                            new { controller = "PrivateMessages", action = "Index", tab = UrlParameter.Optional },
+                            new[] { "mine.web.Controllers" });
+            //wishlist
+            routes.MapLocalizedRoute("Wishlist",
+                            "wishlist/{customerGuid}",
+                            new { controller = "ShoppingCart", action = "Wishlist", customerGuid = UrlParameter.Optional },
+                            new[] { "mine.web.Controllers" });
+            //shopping cart
+            routes.MapLocalizedRoute("ShoppingCart",
+                            "cart/",
+                            new { controller = "ShoppingCart", action = "Cart" },
+                            new[] { "mine.web.Controllers" });
         }
 
         public int Priority

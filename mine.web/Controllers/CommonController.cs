@@ -17,6 +17,7 @@ using mine.services.Forums;
 using mine.services;
 using mine.services.Common;
 using mine.services.Security;
+using mine.web.framework.Localization;
 
 namespace mine.web.Controllers
 {
@@ -197,6 +198,18 @@ namespace mine.web.Controllers
             //prevent open redirection attack
             if (!Url.IsLocalUrl(returnUrl))
                 returnUrl = Url.RouteUrl("HomePage");
+            //language part in URL
+            if (_localizationSettings.SeoFriendlyUrlsForLanguagesEnabled)
+            {
+                string applicationPath = HttpContext.Request.ApplicationPath;
+                if (returnUrl.IsLocalizedUrl(applicationPath, true))
+                {
+                    //already localized URL
+                    returnUrl = returnUrl.RemoveLanguageSeoCodeFromRawUrl(applicationPath);
+                }
+                returnUrl = returnUrl.AddLanguageSeoCodeToRawUrl(applicationPath, _workContext.WorkingLanguage);
+            }
+            return Redirect(returnUrl);
         }
 
         [NonAction]

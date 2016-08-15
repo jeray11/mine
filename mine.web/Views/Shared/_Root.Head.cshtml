@@ -1,6 +1,7 @@
 ﻿@using mine.core.Domain.Common;
 @using mine.core.Infrastructure;
 @{
+    Layout = null;
     var displayMiniProfiler = EngineContext.Current.Resolve<mine.core.Domain.StoreInformationSettings>().DisplayMiniProfilerInPublicStore;
     var commonSettings = EngineContext.Current.Resolve<CommonSettings>();
 }

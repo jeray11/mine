@@ -23,6 +23,7 @@ using mine.services.Helpers;
 using mine.services.Localization;
 using mine.services.Logging;
 using mine.services.Media;
+using mine.services.Security;
 using mine.services.Seo;
 using mine.services.Stores;
 using mine.services.Topics;
@@ -116,6 +117,7 @@ namespace mine.web.framework
             builder.RegisterType<LocalizedEntityService>().As<ILocalizedEntityService>().InstancePerLifetimeScope();
             builder.RegisterType<UrlRecordService>().As<IUrlRecordService>().InstancePerLifetimeScope();
             builder.RegisterType<CurrencyService>().As<ICurrencyService>().InstancePerLifetimeScope();
+            builder.RegisterType<PermissionService>().As<IPermissionService>().InstancePerLifetimeScope();
             //pass MemoryCacheManager as cacheManager (cache settings between requests)
             builder.RegisterType<StoreMappingService>().As<IStoreMappingService>()
                .WithParameter(ResolvedParameter.ForNamed<ICacheManager>("mine_cache_static"))

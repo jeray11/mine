@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mine.core.Domain.Localization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace mine.core.Domain.Stores
 {
-    public class Store : BaseEntity
+    public class Store : BaseEntity, ILocalizedEntity
     {
         /// <summary>
         /// 名称

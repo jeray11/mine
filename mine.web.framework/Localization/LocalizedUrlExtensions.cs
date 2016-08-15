@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mine.core.Domain.Localization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -132,6 +133,37 @@ namespace mine.web.framework.Localization
             if (applicationPath.IsVirtualDirectory())
                 result = applicationPath + result;  //add back applciation path
             return result;
+        }
+        /// <summary>
+        /// Add language SEO code from URL
+        /// </summary>
+        /// <param name="url">Raw URL</param>
+        /// <param name="applicationPath">Application path</param>
+        /// <param name="language">Language</param>
+        /// <returns>Result</returns>
+        public static string AddLanguageSeoCodeToRawUrl(this string url, string applicationPath,
+            Language language)
+        {
+            if (language == null)
+                throw new ArgumentNullException("language");
+
+            //null validation is not required
+            //if (string.IsNullOrEmpty(url))
+            //    return url;
+
+
+            int startIndex = 0;
+            if (applicationPath.IsVirtualDirectory())
+            {
+                //we're in virtual directory.
+                startIndex = applicationPath.Length;
+            }
+
+            //add SEO code
+            url = url.Insert(startIndex, language.UniqueSeoCode);
+            url = url.Insert(startIndex, "/");
+
+            return url;
         }
     }
 }
