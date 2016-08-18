@@ -189,6 +189,7 @@
     <Compile Include="Models\Boards\ActiveDiscussionsModel.cs" />
     <Compile Include="Models\Boards\BoardsIndexModel.cs" />
     <Compile Include="Models\Boards\ForumGroupModel.cs" />
+    <Compile Include="Models\Boards\ForumPageModel.cs" />
     <Compile Include="Models\Boards\ForumRowModel.cs" />
     <Compile Include="Models\Boards\ForumTopicRowModel.cs" />
     <Compile Include="Models\Boards\LastPostModel.cs" />

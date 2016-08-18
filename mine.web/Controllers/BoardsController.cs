@@ -188,6 +188,36 @@ namespace mine.web.Controllers
             model.ShowTopic = showTopic;
             return PartialView(model);
         }
+
+        public ActionResult Forum(int id, int page = 1) 
+        {
+            if (!_forumSettings.ForumsEnabled)
+            {
+                return RedirectToRoute("HomePage");
+            }
+            var forum = _forumService.GetForumById(id);
+            if (forum != null)
+            {
+                var model = new ForumPageModel();
+                model.Id = forum.Id;
+                model.Name = forum.Name;
+                model.SeName = forum.GetSeName();
+                model.Description = forum.Description;
+                int pageSize = _forumSettings.TopicsPageSize > 0 ? _forumSettings.TopicsPageSize : 10;
+                if (_forumService.IsCustomerAllowedToSubscribe(_workContext.CurrentCustomer))
+                {
+                    model.WatchForumText = _localizationService.GetResource("Forum.WatchForum");
+
+                    var forumSubscription = _forumService.GetAllSubscriptions(_workContext.CurrentCustomer.Id, forum.Id, 0, 0, 1).FirstOrDefault();
+                    if (forumSubscription != null)
+                    {
+                        model.WatchForumText = _localizationService.GetResource("Forum.UnwatchForum");
+                    }
+                }
+            }
+            return RedirectToRoute("Boards");
+        }
+
         //
         // GET: /Boards/Details/5
         public ActionResult Details(int id)

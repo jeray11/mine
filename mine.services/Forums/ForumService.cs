@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using mine.core;
+using mine.core.Domain.Customers;
 
 namespace mine.services.Forums
 {
@@ -169,6 +170,34 @@ namespace mine.services.Forums
             query = query.OrderByDescending(pm => pm.CreatedOnUtc);
             var privateMessages = new PagedList<PrivateMessage>(query, pageIndex, pageSize);
             return privateMessages;
+        }
+
+        public Forum GetForumById(int forumId)
+        {
+            if (forumId == 0)
+                return null;
+
+            return _forumRepository.GetById(forumId);
+        }
+
+        /// <summary>
+        /// Check whether customer is allowed to watch topics
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        public bool IsCustomerAllowedToSubscribe(Customer customer)
+        {
+            if (customer == null)
+            {
+                return false;
+            }
+
+            if (customer.IsGuest())
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

@@ -41,5 +41,9 @@ namespace mine.core.Domain.Forums
         /// 是否弹出提示私信
         /// </summary>
         public bool ShowAlertForPM { get; set; }
+        /// <summary>
+        /// 专题详细页显示多少个主题
+        /// </summary>
+        public int TopicsPageSize { get; set; }
     }
 }

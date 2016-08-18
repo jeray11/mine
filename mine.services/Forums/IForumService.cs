@@ -1,4 +1,5 @@
 ﻿using mine.core;
+using mine.core.Domain.Customers;
 using mine.core.Domain.Forums;
 using System;
 using System.Collections.Generic;
@@ -71,5 +72,28 @@ namespace mine.services.Forums
         IPagedList<PrivateMessage> GetAllPrivateMessages(int storeId, int fromCustomerId,
             int toCustomerId, bool? isRead, bool? isDeletedByAuthor, bool? isDeletedByRecipient,
             string keywords, int pageIndex = 0, int pageSize = int.MaxValue);
+        /// <summary>
+        /// 获取一个专题
+        /// </summary>
+        /// <param name="forumId"></param>
+        /// <returns></returns>
+        Forum GetForumById(int forumId);
+        /// <summary>
+        /// Check whether customer is allowed to watch topics
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        bool IsCustomerAllowedToSubscribe(Customer customer);
+        /// <summary>
+        /// Gets forum subscriptions
+        /// </summary>
+        /// <param name="customerId">The customer identifier</param>
+        /// <param name="forumId">The forum identifier</param>
+        /// <param name="topicId">The topic identifier</param>
+        /// <param name="pageIndex">Page index</param>
+        /// <param name="pageSize">Page size</param>
+        /// <returns>Forum subscriptions</returns>
+        IPagedList<ForumSubscription> GetAllSubscriptions(int customerId = 0, int forumId = 0,
+            int topicId = 0, int pageIndex = 0, int pageSize = int.MaxValue);
     }
 }

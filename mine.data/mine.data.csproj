@@ -63,6 +63,7 @@
     <Compile Include="Mapping\Forums\ForumGroupMap.cs" />
     <Compile Include="Mapping\Forums\ForumMap.cs" />
     <Compile Include="Mapping\Forums\ForumPostMap.cs" />
+    <Compile Include="Mapping\Forums\ForumSubscriptionMap.cs" />
     <Compile Include="Mapping\Forums\ForumTopicMap.cs" />
     <Compile Include="Mapping\Forums\PrivateMessageMap.cs" />
     <Compile Include="Mapping\Localization\LanguageMap.cs" />
